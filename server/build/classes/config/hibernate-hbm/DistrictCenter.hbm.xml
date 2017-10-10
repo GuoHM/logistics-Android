@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-6-25 17:06:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="bean.DistrictCenter" table="DistrictCenter" catalog="logistics">
+        <id name="centerId" type="java.lang.Integer">
+            <column name="centerID" />
+            <generator class="identity" />
+        </id>
+        <property name="district" type="string">
+            <column name="district" length="10" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="10" not-null="true" />
+        </property>
+        <property name="province" type="string">
+            <column name="province" length="10" not-null="true" />
+        </property>
+        <property name="pwd" type="string">
+            <column name="pwd" length="15" not-null="true" />
+        </property>
+        <set name="goodsesForSendDestrictCenter" table="Goods" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sendDestrictCenter" />
+            </key>
+            <one-to-many class="bean.Goods" />
+        </set>
+        <set name="goodsesForReceiveDistrictCenter" table="Goods" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="receiveDistrictCenter" />
+            </key>
+            <one-to-many class="bean.Goods" />
+        </set>
+    </class>
+</hibernate-mapping>

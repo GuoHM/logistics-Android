@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-6-25 17:06:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="bean.GoodsStatus" table="GoodsStatus" catalog="logistics">
+        <composite-id name="id" class="bean.GoodsStatusId">
+            <key-property name="goodsId" type="string">
+                <column name="goodsID" length="15" />
+            </key-property>
+            <key-property name="conditionId" type="string">
+                <column name="conditionID" length="2" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="goods" class="bean.Goods" update="false" insert="false" fetch="select" lazy="false">
+            <column name="goodsID" length="15" not-null="true" />
+        </many-to-one>
+        <many-to-one name="conditions" class="bean.Conditions" update="false" insert="false" fetch="select" lazy="false">
+            <column name="conditionID" length="2" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

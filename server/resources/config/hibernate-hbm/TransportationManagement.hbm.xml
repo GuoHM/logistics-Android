@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-6-25 17:06:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="bean.TransportationManagement" table="TransportationManagement" catalog="logistics">
+        <composite-id name="id" class="bean.TransportationManagementId">
+            <key-property name="centerId" type="int">
+                <column name="centerID" />
+            </key-property>
+            <key-property name="transportationId" type="string">
+                <column name="transportationID" length="5" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="transportation" class="bean.Transportation" update="false" insert="false" fetch="select">
+            <column name="transportationID" length="5" not-null="true" />
+        </many-to-one>
+        <many-to-one name="provinceCenter" class="bean.ProvinceCenter" update="false" insert="false" fetch="select">
+            <column name="centerID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

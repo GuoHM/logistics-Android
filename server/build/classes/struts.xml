@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="cac-root" extends="struts-default" namespace="/">
+	</package>
+	<package name="default" extends="json-default"><!--需要将struts-default改为 -->
+		<action name="login" method="login" class="allAction">
+			<result type="json" />
+		</action>
+	</package>
+</struts>

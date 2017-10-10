@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-6-25 17:06:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="bean.Admin" table="Admin" catalog="logistics">
+        <id name="adminId" type="string">
+            <column name="adminID" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="pwd" type="string">
+            <column name="pwd" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
