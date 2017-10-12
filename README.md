@@ -23,3 +23,8 @@
 <td>First up load client,upload jsonHelper on the server,modify struts.xml</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.12</td>
+<td>add GUI</td>
+<td>Yang Hanxiao</td>
+</tr>
