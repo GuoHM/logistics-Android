@@ -5,3 +5,16 @@
 <h3>Environment</h3>
 <p>Sever:Struts2+Spring+Hibernate</p>
 <p>Client:android</p>
+
+<h3>Modification</h3>
+<table>
+<tr>
+<th>Time</th>
+<th>Modifications</th>
+<th>Author</th>
+</tr>
+<tr>
+<td>2017.10.11</td>
+<td>First up load server</td>
+<td>Guo Haoming</td>
+</tr>
