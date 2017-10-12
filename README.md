@@ -20,6 +20,6 @@
 </tr>
 <tr>
 <td>2017.10.12</td>
-<td>First up load client</td>
+<td>First up load client,upload jsonHelper on the server</td>
 <td>Guo Haoming</td>
 </tr>
