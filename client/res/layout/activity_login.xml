@@ -1,16 +1,84 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LoginActivity" >
+<?xml version="1.0" encoding="utf-8"?>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+<AbsoluteLayout android:id="@+id/layout02" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent" 
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-</RelativeLayout>
+	<EditText
+	    android:id="@+id/userField"
+	    android:layout_width="210dp"
+	    android:layout_height="wrap_content"
+	    android:layout_x="93dp"
+	    android:layout_y="64dp"
+	    android:ems="10" >
+
+	    <requestFocus />
+	</EditText>
+
+	<TextView
+	    android:id="@+id/userLable"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_x="18dp"
+	    android:layout_y="86dp"
+	    android:text="用户名：" />
+
+	<TextView
+	    android:id="@+id/passwordLable"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_x="16dp"
+	    android:layout_y="152dp"
+	    android:text="密码：" />
+
+	<EditText
+	    android:id="@+id/passwordField"
+	    android:layout_width="204dp"
+	    android:layout_height="wrap_content"
+	    android:layout_x="97dp"
+	    android:layout_y="130dp"
+	    android:ems="10"
+	    android:inputType="textPassword" />
+
+	<Button
+	    android:id="@+id/ok"
+	    android:layout_width="70dip"
+	    android:layout_height="wrap_content"
+	    android:layout_x="84dp"
+	    android:layout_y="264dp"
+	    android:text="确认" />
+
+	<RadioButton
+	    android:id="@+id/provinceCenter"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_x="197dp"
+	    android:layout_y="189dp"
+	    android:text="省分拣中心" />
+
+	<RadioButton
+	    android:id="@+id/districtCenter"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_x="84dp"
+	    android:layout_y="189dp"
+	    android:text="区县营业点" />
+
+	<Button
+	    android:id="@+id/cancel"
+	    android:layout_width="70dip"
+	    android:layout_height="wrap_content"
+	    android:layout_x="175dp"
+	    android:layout_y="262dp"
+	    android:text="取消" />
+
+	<RadioButton
+	    android:id="@+id/admin"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_x="7dp"
+	    android:layout_y="188dp"
+	    android:text="管理员" />
+
+</AbsoluteLayout>
