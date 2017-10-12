@@ -1,6 +1,5 @@
 package com.example.logistics_android;
 
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -13,20 +12,17 @@ public class MainActivity extends TabActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-super.onCreate(savedInstanceState);
-        
-        TabHost tabHost = getTabHost();
-        
-        LayoutInflater.from(this).inflate(R.layout.activity_login, tabHost.getTabContentView(),true);
-        LayoutInflater.from(this).inflate(R.layout.activity_send, tabHost.getTabContentView(),true);
-        LayoutInflater.from(this).inflate(R.layout.activity_search, tabHost.getTabContentView(),true);
-        
-        tabHost.addTab(tabHost.newTabSpec("LOGIN").
-        		setIndicator("登录").setContent(new Intent().setClass(this, LoginActivity.class)));
-        tabHost.addTab(tabHost.newTabSpec("SEND").
-        		setIndicator("寄件").setContent(new Intent().setClass(this, SendActivity.class)));
-        tabHost.addTab(tabHost.newTabSpec("SEARCH").
-        		setIndicator("查件").setContent(new Intent().setClass(this, SearchActivity.class)));
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		TabHost tabHost = getTabHost();
+		
+		tabHost.addTab(tabHost.newTabSpec("LOGIN").setIndicator("登录")
+				.setContent(new Intent().setClass(this, LoginActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("SEND").setIndicator("寄件")
+				.setContent(new Intent().setClass(this, SendActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("SEARCH").setIndicator("查件")
+				.setContent(new Intent().setClass(this, SearchActivity.class)));
 
 	}
 

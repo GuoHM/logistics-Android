@@ -34,6 +34,14 @@
             android:name="com.example.logistics_android.SendActivity"
             android:label="@string/title_activity_send" >
         </activity>
+        <activity
+            android:name="com.example.logistics_android.DistrictMainActivity"
+            android:label="@string/title_activity_district" >
+        </activity>
+        <activity
+            android:name="com.example.logistics_android.MPActivity"
+            android:label="@string/title_activity_mp" >
+        </activity>
     </application>
 
 </manifest>
