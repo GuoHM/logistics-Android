@@ -40,44 +40,48 @@
         android:ems="10"
         android:inputType="textPassword" />
 
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_x="24dp"
+        android:layout_y="142dp" >
+
+        <RadioButton
+            android:id="@+id/radioDistrict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="区县营业点" />
+
+        <RadioButton
+            android:id="@+id/radioAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="管理员" />
+
+        <RadioButton
+            android:id="@+id/radioProvince"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="省分拣中心" />
+
+    </RadioGroup>
+
     <Button
         android:id="@+id/ok"
         android:layout_width="70dip"
         android:layout_height="wrap_content"
-        android:layout_x="78dp"
-        android:layout_y="220dp"
+        android:layout_x="64dp"
+        android:layout_y="266dp"
         android:text="确认" />
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="70dip"
         android:layout_height="wrap_content"
-        android:layout_x="168dp"
-        android:layout_y="226dp"
+        android:layout_x="174dp"
+        android:layout_y="272dp"
         android:text="取消" />
-
-    <RadioButton
-        android:id="@+id/admin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="-8dp"
-        android:layout_y="144dp"
-        android:text="管理员" />
-
-    <RadioButton
-        android:id="@+id/provinceCenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="190dp"
-        android:layout_y="146dp"
-        android:text="省分拣中心" />
-
-    <RadioButton
-        android:id="@+id/districtCenter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="78dp"
-        android:layout_y="146dp"
-        android:text="区县营业点" />
 
 </AbsoluteLayout>
