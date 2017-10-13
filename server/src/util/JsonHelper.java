@@ -16,8 +16,8 @@ public class JsonHelper {
 	}
 	
 	public void put(String name,Object object){
-		data = new HashMap<String , Object>();
-		data.put(name, object);
+		this.data = new HashMap<String , Object>();
+		this.data.put(name, object);
 	}
 	
 	public void output() throws IOException{

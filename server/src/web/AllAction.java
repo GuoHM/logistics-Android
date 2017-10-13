@@ -1,9 +1,9 @@
 package web;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +22,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.log4j.Logger;
 
+import util.JsonHelper;
 import service.IAdminService;
 import service.IConditionsService;
 import service.IDistrictCenterService;
@@ -31,9 +32,6 @@ import service.IGoodsStatusService;
 
 public class AllAction extends ActionSupport implements ServletRequestAware {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1405926533311347411L;
 	ActionContext context = ActionContext.getContext();
 	protected HttpServletRequest servletRequest = null;
@@ -62,28 +60,53 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
 	private String receiverAddress;
 	private String senderDistrict;
 	private String receiverDistrict;
+	private JsonHelper json = new JsonHelper(this.response);
 
 	public void login() throws Exception {
-		// LoginInfo login = null;
-		this.response.setContentType("text/json;charset=utf-8");
-		this.response.setCharacterEncoding("UTF-8");
-		Map<String, String> json = new HashMap<String, String>();
-		try {
-			DistrictCenter districtCenter = districtCenterService.getDistrictCenterByIDAndPwd(userid, password);
-			if (districtCenter == null) {
-				json.put("message", "账号或密码输入有误");
-			} else {
-				json.put("message", "登录成功");
+		switch(type){
+		case 1:
+			try {
+				DistrictCenter districtCenter = districtCenterService.getDistrictCenterByIDAndPwd(userid, password);
+				if (districtCenter == null) {
+					json.put("login", 0);
+				} else {
+					json.put("login", 1);
+				}
+				json.output();
+				return;
+			} catch (Exception e) {
+				logger.error(e);
 			}
-			byte[] jsonBytes = json.toString().getBytes("utf-8");
-			response.setContentLength(jsonBytes.length);
-			response.getOutputStream().write(jsonBytes);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
 
-		} catch (Exception e) {
-			logger.error(e);
+		case 2:
+			try {
+				Admin admin = adminService.getAdminByLoginAndPassword(userid, password);
+				if (admin == null) {
+					json.put("login", 0);
+				} else {
+					json.put("login", 2);
+				}
+				json.output();
+				return;
+			} catch (Exception e) {
+				logger.error(e);
+			}
+
+		case 3:
+			try {
+				ProvinceCenter provinceCenter = provinceCenterService.getProvinceCenterByIDAndPwd(userid, password);
+				if (provinceCenter == null) {
+					json.put("login", 0);
+				} else {
+					json.put("login", 3);
+				}
+				json.output();
+				return;
+			} catch (Exception e) {
+				logger.error(e);
+			}
 		}
+
 	}
 
 	public String modifyPwd() {
@@ -139,8 +162,7 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
 		return SUCCESS;
 	}
 
-	@SuppressWarnings("deprecation")
-	public String getGoodsID() {
+	public void getGoodsID() throws IOException {
 		SimpleDateFormat f = new SimpleDateFormat("MMddHHmmss");
 		Date date = new Date();
 		String s = f.format(date);
@@ -150,13 +172,12 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
 		s += (int) (Math.random() * 10) + "";
 		System.out.println(s);
 		if (s != null) {
-			context.getSession().put("goodsID", s);
-			return "getSuccess";
-		} else
-			return "getfalse";
+			json.put("goodsID", s);
+			json.output();
+		}
 	}
 
-	public String addGoods() throws Exception {
+	public void addGoods() throws Exception {
 		Goods goods = new Goods();
 		goods.setGoodsId((String) context.getSession().get("goodsID"));
 		goods.setSenderName(senderName);
@@ -181,10 +202,11 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
 		goodsStatus.setConditions(conditionsService.getConditionsByConditonsId("1"));
 		goodsStatusService.save(goodsStatus);
 		if (goods != null) {
-			context.getSession().put("goodsinfo", goods);
-			return "addSuccess";
+			json.put("goodsinfo", goods);
+			json.output();
+			return;
 		}
-		return "addFalse";
+
 	}
 
 	public String logout() {

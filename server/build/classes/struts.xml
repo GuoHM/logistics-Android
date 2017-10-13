@@ -5,8 +5,104 @@
 <struts>
 	<package name="cac-root" extends="struts-default" namespace="/">
 	</package>
-	<package name="default" extends="json-default"><!--需要将struts-default改为 -->
+	<package name="default" extends="json-default">
 		<action name="login" method="login" class="allAction">
+			<result type="json" />
+		</action>
+		<action name="modifyPwd" method="modifyPwd" class="allAction">
+			<result type="json" />
+		</action>
+		<action name="getGoodsID" method="getGoodsID" class="allAction">
+			<result type="json" />
+		</action>
+		<action name="addGoods" method="addGoods" class="allAction">
+			<result type="json" />
+		</action>
+		<action name="searchGoodsByIDModify" method="searchByGoodsID"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="searchGoodsByID" method="searchByGoodsID" class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="searchGoodsByIDPrint" method="searchByGoodsID"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="modifyGoodsinfo" method="modifyGoodsinfo" class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="printinfo" method="addStatus" class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="getGoodsByDistrict" method="getGoodsByDistrict"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="senditsDistrict" method="adddistrictListStatus"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="getGoodsByProvince" method="getGoodsByProvince"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+		<action name="viewTransportation" method="viewTransportation"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+		<action name="viewGoods" method="viewGoods" class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="selectedTransportation" method="selectedTransportation"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+		<action name="addsenderProvinceListStatus" method="addsenderProvinceListStatus"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+
+		<action name="getByreceiverProvince" method="getByreceiverProvince"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+		<action name="addsenderDistrictListStatus" method="addsenderDistrictListStatus"
+			class="provinceCenterAction">
+			<result type="json" />
+		</action>
+		<action name="getGoodsByreceiverDistrict" method="getGoodsByreceiverDistrict"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+		<action name="addreceiverDistrictListStatus" method="addreceiverDistrictListStatus"
+			class="districtCenterAction">
+			<result type="json" />
+		</action>
+
+		<action name="addProvince" method="addProvince" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="addDistrict" method="addDistrict" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="getDistrictList" method="getDistrictList" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="getDistrictListFront" method="getDistrictList"
+			class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="getProvinceList" method="getProvinceList" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="deleteProvince" method="deleteProvince" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="deleteDistrict" method="deleteDistrict" class="adminAction">
+			<result type="json" />
+		</action>
+		<action name="logout" method="logout" class="allAction">
 			<result type="json" />
 		</action>
 	</package>
