@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import bean.DistrictCenter;
@@ -21,6 +24,7 @@ import service.IConditionsService;
 import service.IGoodsService;
 import service.IGoodsStatusService;
 import service.IProvinceCenterService;
+import util.JsonHelper;
 
 public class DistrictCenterAction extends ActionSupport implements ServletRequestAware {
 	private static final long serialVersionUID = 1405926533311347411L;
@@ -46,19 +50,24 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 	private String receiverAddress;
 	private String senderDistrict;
 	private String receiverDistrict;
+	private HttpServletResponse response = ServletActionContext.getResponse();
+	private JsonHelper json = new JsonHelper(this.response);
 	
 
-	public String searchByGoodsID() throws Exception { // 根据单号查询快递单信息
+	public void searchByGoodsID() throws Exception { // 根据单号查询快递单信息
 		Goods goods = new Goods();
 		goods = goodsService.getGoodsBygoodsId(searchGoodsId);
 		List<GoodsStatus> statuslist = goodsStatusService.getGoodsStatusByGoodsId(searchGoodsId);
 		if (goods != null) {
-			context.getSession().put("statuslist", statuslist);
-			context.getSession().put("getGoodsByID", goods);
-			return "searchSuccess";
+			json.put("statuslist", statuslist);
+			json.put("getGoodsByID", goods);
+			System.out.println(goods);
+			json.output();
+			return;
 		} else {
-			addActionError("找不到该快递，请确认您的单号信息");
-			return INPUT;
+			json.put("error", "找不到该订单信息");
+			json.output();
+			return;
 		}
 	}
 
