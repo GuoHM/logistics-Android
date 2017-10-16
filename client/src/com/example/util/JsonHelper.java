@@ -20,8 +20,8 @@ import android.os.StrictMode;
 import android.util.Log;
 
 public class JsonHelper {
-	private static final String SERVER_URL="http://10.0.2.2:8080/logistics-system-android/";
-	private Map<String,Object> data=new HashMap<String,Object>();
+	private static final String SERVER_URL = "http://10.0.2.2:8080/logistics-system-android/";
+	private Map<String, Object> data = new HashMap<String, Object>();
 	private HttpGet request;
 	private HttpResponse response;
 	private HttpClient httpclient = new DefaultHttpClient();
@@ -32,35 +32,35 @@ public class JsonHelper {
 		StrictMode.setVmPolicy(
 				new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().penaltyLog().penaltyDeath().build());
 	}
-	
-	public void setParameter(String key,Object value){
+
+	public void setParameter(String key, Object value) {
 		data.put(key, value);
 	}
-	
-	public void processURL(String actionName){
-		String processURL=SERVER_URL+actionName+"?";
+
+	public void processURL(String actionName) {
+		String processURL = SERVER_URL + actionName + "?";
 		Iterator<Entry<String, Object>> iter = this.data.entrySet().iterator();
 		while (iter.hasNext()) {
-			Entry<String, Object> entry = (Entry<String, Object>)iter.next();
-			processURL+=entry.getKey()+"="+entry.getValue()+"&";
+			Entry<String, Object> entry = (Entry<String, Object>) iter.next();
+			processURL += entry.getKey() + "=" + entry.getValue() + "&";
 		}
-		
+
 		Log.d("Ô¶³ÌURL", processURL);
 		this.request = new HttpGet(processURL);
 		this.request.addHeader("Accept", "text/json");
 	}
-	
-	public Object getJsonData(String key) throws ClientProtocolException, IOException, JSONException{
+
+	public Object getJsonData(String key) throws ClientProtocolException, IOException, JSONException {
 		this.response = this.httpclient.execute(request);
 		HttpEntity entity = response.getEntity();
 		String json = EntityUtils.toString(entity, "UTF-8");
-		if(json!=null){
+		if (json != null) {
 			JSONObject jsonObject = new JSONObject(JSONTokener(json));
 			return jsonObject.get(key);
 		}
 		return null;
 	}
-	
+
 	private String JSONTokener(String in) {
 		// consume an optional byte order mark (BOM) if it exists
 		if (in != null && in.startsWith("\ufeff")) {
@@ -69,6 +69,8 @@ public class JsonHelper {
 		return in;
 	}
 	
-	
+	public Object jsonToObject(){
+		
+	}
 
 }

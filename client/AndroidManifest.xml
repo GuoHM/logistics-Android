@@ -5,16 +5,18 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
-<uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.logistics_android.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,24 +25,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.logistics_android.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="com.example.logistics_android.SearchActivity"
+            android:name=".SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
         <activity
-            android:name="com.example.logistics_android.SendActivity"
+            android:name=".SendActivity"
             android:label="@string/title_activity_send" >
         </activity>
         <activity
-            android:name="com.example.logistics_android.DistrictMainActivity"
+            android:name=".DistrictMainActivity"
             android:label="@string/title_activity_district" >
         </activity>
         <activity
-            android:name="com.example.logistics_android.MPActivity"
+            android:name=".MPActivity"
             android:label="@string/title_activity_mp" >
+        </activity>
+        <activity
+            android:name=".SearchResultActivity"
+            android:label="@string/title_activity_search_result" >
         </activity>
     </application>
 

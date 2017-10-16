@@ -6,7 +6,7 @@
     android:id="@+id/layout02" >
 
     <RelativeLayout
-        android:id="@+id/layout02"
+
         android:layout_width="302dp"
         android:layout_height="526dp" >
 

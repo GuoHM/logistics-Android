@@ -9,5 +9,6 @@
     <string name="title_activity_send">SendActivity</string>
     <string name="title_activity_district">DistrictActivity</string>
     <string name="title_activity_mp">MPActivity</string>
+    <string name="title_activity_search_result">SearchResultActivity</string>
 
 </resources>

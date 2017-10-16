@@ -18,24 +18,13 @@
         android:text="请输入单号：" />
 
     <EditText
-        android:id="@+id/goodsNumberField"
+        android:id="@+id/goodsIdField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp"
         android:ems="10" />
-
-    <Button
-        android:id="@+id/cancel"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/goodsNumberField"
-        android:layout_below="@+id/goodsNumberField"
-        android:layout_marginRight="43dp"
-        android:layout_marginTop="26dp"
-        android:text="取消" />
 
     <Button
         android:id="@+id/confirm"
@@ -47,5 +36,16 @@
         android:layout_alignLeft="@+id/goodsNumberField"
         android:layout_marginLeft="20dp"
         android:text="确定" />
+
+    <Button
+        android:id="@+id/cancel"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/goodsIdField"
+        android:layout_below="@+id/goodsIdField"
+        android:layout_marginRight="47dp"
+        android:layout_marginTop="58dp"
+        android:text="取消" />
 
 </RelativeLayout>
