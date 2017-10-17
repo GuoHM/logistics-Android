@@ -8,29 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DistrictMainActivity" >
 
-     <Button
-        android:id="@+id/district_modifyprint"
+    <Button
+        android:id="@+id/province_sort"
         android:layout_width="154dp"
         android:layout_height="62dp"
-        android:layout_x="72dp"
-        android:layout_y="40dp"
-        android:text="修改/打印" />
-    <Button
-        android:id="@+id/district_sort"
-        android:layout_width="155dp"
-        android:layout_height="64dp"
-        android:layout_x="75dp"
-        android:layout_y="130dp"
+        android:layout_x="87dp"
+        android:layout_y="73dp"
         android:text="分拣" />
 
-   
-
     <Button
-        android:id="@+id/district_send"
-        android:layout_width="166dp"
-        android:layout_height="63dp"
-        android:layout_x="75dp"
-        android:layout_y="242dp"
-        android:text="派送" />
+        android:id="@+id/province_send"
+        android:layout_width="155dp"
+        android:layout_height="64dp"
+        android:layout_x="82dp"
+        android:layout_y="244dp"
+        android:text="发送" />
 
 </AbsoluteLayout>

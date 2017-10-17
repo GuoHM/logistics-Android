@@ -93,7 +93,7 @@ public class SearchResultActivity extends Activity {
 		searchResult_return = (Button) findViewById(R.id.searchResult_return);
 		Intent intent = getIntent();
 		String goodsId = intent.getStringExtra("searchGoodsId");
-		Log.d("111111111111111111111111", goodsId);
+		
 		json.setParameter("searchGoodsId", goodsId);
 		json.processURL("searchGoodsByID");
 

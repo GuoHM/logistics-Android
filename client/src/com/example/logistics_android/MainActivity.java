@@ -6,10 +6,17 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TabHost;
 
-public class MainActivity extends TabActivity {
+import org.apache.http.client.ClientProtocolException;
+import org.json.JSONException;
 
+import com.example.util.JsonHelper;
+
+public class MainActivity extends TabActivity {
+	private JsonHelper json=new JsonHelper();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,8 +26,8 @@ public class MainActivity extends TabActivity {
 		
 		tabHost.addTab(tabHost.newTabSpec("LOGIN").setIndicator("登录")
 				.setContent(new Intent().setClass(this, LoginActivity.class)));
-		tabHost.addTab(tabHost.newTabSpec("SEND").setIndicator("寄件")
-				.setContent(new Intent().setClass(this, SendActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("WRITE").setIndicator("寄件")
+				.setContent(new Intent().setClass(this, WriteActivity.class)));
 		tabHost.addTab(tabHost.newTabSpec("SEARCH").setIndicator("查件")
 				.setContent(new Intent().setClass(this, SearchActivity.class)));
 

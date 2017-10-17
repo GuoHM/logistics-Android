@@ -10,5 +10,10 @@
     <string name="title_activity_district">DistrictActivity</string>
     <string name="title_activity_mp">MPActivity</string>
     <string name="title_activity_search_result">SearchResultActivity</string>
+    <string name="title_activity_add_district">AddDistrictActivity</string>
+    <string name="title_activity_province_main">ProvinceMainActivity</string>
+    <string name="title_activity_search_modify_print">SearchModifyPrintActivity</string>
+    <string name="title_activity_modify_print">ModifyPrintActivity</string>
+    <string name="title_activity_write">WriteActivity</string>
 
 </resources>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/receiverPhone"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical" >
+
+<GridLayout
+    android:layout_width="290dp"
+    android:layout_height="800dp"
+    android:columnCount="4"
+    android:useDefaultMargins="true" >
+
+    <TextView
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="1"
+        android:text="快递单号"
+        android:textSize="20dip" />
+
+    <TextView
+        android:id="@+id/goodsIdField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="2"
+        android:text="TextView" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_gravity="left"
+        android:text="收件人信息："
+        android:textSize="16dip" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="4"
+        android:text="姓名：" />
+
+    <EditText
+        android:id="@+id/receiverNameField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="4"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="5"
+        android:text="电话：" />
+
+    <EditText
+        android:id="@+id/receiverPhoneField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="5"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|bottom"
+        android:layout_row="8"
+        android:text="省份：" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="12"
+        android:text="城市：" />
+
+    <EditText
+        android:id="@+id/receiverCityField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="12"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="14"
+        android:text="详细地址：" />
+
+    <EditText
+        android:id="@+id/receiverProvinceField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="8"
+        android:ems="10"
+        android:inputType="textPostalAddress" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/receiverAddressField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="14"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_gravity="left"
+        android:text="寄件人信息："
+        android:textSize="16dip" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="16"
+        android:text="姓名：" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|center_vertical"
+        android:layout_row="17"
+        android:text="电话：" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="18"
+        android:text="省份：" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="20"
+        android:text="区县：" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="21"
+        android:text="详细地址：" />
+
+    <EditText
+        android:id="@+id/senderNameField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="16"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/senderPhoneField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="17"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/senderProvinceField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="18"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/senderDistrictField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="20"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/senderAddressField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="21"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_column="0"
+        android:layout_gravity="right|top"
+        android:layout_row="22"
+        android:text="确定" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_column="3"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_row="22"
+        android:text="重置" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|bottom"
+        android:layout_row="13"
+        android:text="区县：" />
+
+    <EditText
+        android:id="@+id/receiverDistrictField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="13"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:layout_width="109dp"
+        android:layout_height="30dp"
+        android:layout_column="0"
+        android:layout_gravity="left|top"
+        android:layout_row="19"
+        android:text="城市：" />
+
+    <EditText
+        android:id="@+id/senderCityField"
+        android:layout_column="3"
+        android:layout_gravity="left|top"
+        android:layout_row="19"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+</GridLayout>
+
+</ScrollView>

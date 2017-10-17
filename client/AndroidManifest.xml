@@ -48,6 +48,26 @@
             android:name=".SearchResultActivity"
             android:label="@string/title_activity_search_result" >
         </activity>
+        <activity
+            android:name=".AddDistrictActivity"
+            android:label="@string/title_activity_add_district" >
+        </activity>
+        <activity
+            android:name=".ProvinceMainActivity"
+            android:label="@string/title_activity_province_main" >
+        </activity>
+        <activity
+            android:name=".SearchModifyPrintActivity"
+            android:label="@string/title_activity_search_modify_print" >
+        </activity>
+        <activity
+            android:name=".ModifyPrintActivity"
+            android:label="@string/title_activity_modify_print" >
+        </activity>
+        <activity
+            android:name=".WriteActivity"
+            android:label="@string/title_activity_write" >
+        </activity>
     </application>
 
 </manifest>
