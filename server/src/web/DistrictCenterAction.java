@@ -47,8 +47,7 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
     private JsonHelper json = new JsonHelper(this.response);
     
     public void searchByGoodsID() throws Exception { // 根据单号查询快递单信息
-        Goods goods = new Goods();
-        goods = goodsService.getGoodsBygoodsId(searchGoodsId);
+        Goods goods = goodsService.getGoodsBygoodsId(searchGoodsId);
         List<GoodsStatus> statuslist = goodsStatusService.getGoodsStatusByGoodsId(searchGoodsId);
         if (goods != null) {
 //            json.put("statuslist", statuslist);

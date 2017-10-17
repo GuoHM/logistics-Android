@@ -163,7 +163,8 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
     }
     public void addGoods() throws Exception {
         Goods goods = new Goods();
-        goods.setGoodsId((String) context.getSession().get("goodsID"));
+        System.out.println(goodsId);
+        goods.setGoodsId(goodsId);
         goods.setSenderName(senderName);
         goods.setSenderPhone(senderPhone);
         goods.setSenderProvince(senderProvince);
