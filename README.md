@@ -33,3 +33,8 @@
 <td>Add JsonHelper on the client,finish login action,modify login action on the server</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.17</td>
+<td>Add search goods function</td>
+<td>Guo Haoming</td>
+</tr>
