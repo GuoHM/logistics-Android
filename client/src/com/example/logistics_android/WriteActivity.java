@@ -75,7 +75,7 @@ public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 		receiverCityField = (EditText) findViewById(R.id.receiverCityField);
 		receiverDistrictField = (EditText) findViewById(R.id.receiverDistrictField);
 		receiverAddressField = (EditText) findViewById(R.id.receiverAddressField);
-		ok = (Button) findViewById(R.id.ok);
+		ok = (Button) findViewById(R.id.write_ok);
 		reset = (Button) findViewById(R.id.reset);
 	}
 
@@ -121,6 +121,7 @@ public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 			,String senderDistrict,String senderAddress,String receiverName,String receiverPhone,String receiverProvince,
 			String receiverCity,String receiverDistrict,String receiverAddress)
 					throws ClientProtocolException, IOException, JSONException {
+		json=new JsonHelper();
 		json.setParameter("goodsId", goodsId);
 		json.setParameter("senderName", senderName);
 		json.setParameter("senderPhone", senderPhone);

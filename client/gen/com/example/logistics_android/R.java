@@ -25,7 +25,7 @@ public final class R {
     }
     public static final class id {
         public static final int LinearLayout1=0x7f08000f;
-        public static final int action_settings=0x7f08003e;
+        public static final int action_settings=0x7f08003f;
         public static final int cancel=0x7f08000d;
         public static final int confirm=0x7f080025;
         public static final int district_modifyprint=0x7f080000;
@@ -49,12 +49,12 @@ public final class R {
         public static final int radioProvince=0x7f08000b;
         public static final int receiverAddressField=0x7f080035;
         public static final int receiverCityField=0x7f080033;
-        public static final int receiverDistrictField=0x7f08003c;
+        public static final int receiverDistrictField=0x7f08003d;
         public static final int receiverNameField=0x7f080031;
         public static final int receiverPhone=0x7f08000e;
         public static final int receiverPhoneField=0x7f080032;
         public static final int receiverProvinceField=0x7f080034;
-        public static final int reset=0x7f08003b;
+        public static final int reset=0x7f08003c;
         public static final int save=0x7f080020;
         public static final int searchResult_goodsId=0x7f080010;
         public static final int searchResult_receiverAddress=0x7f080018;
@@ -78,7 +78,7 @@ public final class R {
         public static final int searchResult_status5=0x7f08002d;
         public static final int searchResult_status6=0x7f08002e;
         public static final int senderAddressField=0x7f08003a;
-        public static final int senderCityField=0x7f08003d;
+        public static final int senderCityField=0x7f08003e;
         public static final int senderDistrictField=0x7f080039;
         public static final int senderNameField=0x7f080036;
         public static final int senderPhoneField=0x7f080037;
@@ -87,6 +87,7 @@ public final class R {
         public static final int textView3=0x7f080019;
         public static final int userField=0x7f080004;
         public static final int userLable=0x7f080005;
+        public static final int write_ok=0x7f08003b;
     }
     public static final class layout {
         public static final int activity_district=0x7f030000;

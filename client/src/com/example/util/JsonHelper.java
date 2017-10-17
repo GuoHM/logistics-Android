@@ -37,21 +37,23 @@ public class JsonHelper {
 		data.put(key, value);
 	}
 
-	public void processURL(String actionName) throws UnsupportedEncodingException {
+	public void processURL(String actionName) throws ClientProtocolException, IOException {
 		String processURL = SERVER_URL + actionName + "?";
 		Iterator<Entry<String, Object>> iter = this.data.entrySet().iterator();
 		while (iter.hasNext()) {
 			Entry<String, Object> entry = (Entry<String, Object>) iter.next();
 			String value = URLEncoder.encode(entry.getValue().toString(), "UTF-8");
-			processURL += entry.getKey() + "=" + entry.getValue() + "&";
+			processURL += entry.getKey() + "=" + value + "&";
 		}
 		Log.d("Ô¶³ÌURL", processURL);
 		this.request = new HttpGet(processURL);
 		this.request.addHeader("Accept", "text/json");
+		httpclient = new DefaultHttpClient();
+		this.response = httpclient.execute(request);
 	}
 
 	public Object getJsonData(String key) throws ClientProtocolException, IOException, JSONException {
-		this.response = this.httpclient.execute(request);
+		
 		HttpEntity entity = response.getEntity();
 		String json = EntityUtils.toString(entity, "UTF-8");
 		if (json != null) {

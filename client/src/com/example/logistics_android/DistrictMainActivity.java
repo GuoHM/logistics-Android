@@ -1,6 +1,9 @@
 package com.example.logistics_android;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+
+import org.apache.http.client.ClientProtocolException;
 
 import com.example.util.JsonHelper;
 
@@ -32,6 +35,12 @@ public class DistrictMainActivity extends Activity {
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}		
 			}
 		});
@@ -40,6 +49,12 @@ public class DistrictMainActivity extends Activity {
 				try {
 					json.processURL("addreceiverDistrictListStatus");
 				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
