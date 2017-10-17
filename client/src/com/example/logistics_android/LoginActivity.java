@@ -89,7 +89,7 @@ public class LoginActivity extends Activity {
 		json.setParameter("password", password);
 		json.setParameter("type", type);
 		json.processURL("login");
-		Integer result = (Integer) json.getJsonData("login");
+		Integer result =  (Integer) json.getJsonData("login");
 		Intent intent;
 		switch (result) {
 		case 0:
