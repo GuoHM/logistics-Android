@@ -58,14 +58,13 @@ public class SearchModifyPrintActivity extends Activity {
 			});
 
 		}
-
-		private void searchService(String goodsId)
-				throws ClientProtocolException, IOException, JSONException {
-			json.setParameter("goodsId", goodsId);
-			json.processURL("searchGoodsByIDModify");
-		//	Integer result = (Integer) json.getJsonData("login");
-		//	Intent intent;
+			private void searchService(String goodsId) throws ClientProtocolException, IOException, JSONException{
+					Intent intent = new Intent();			
+					intent.putExtra("currentGoods", goodsId);
+					intent.setClass(SearchModifyPrintActivity.this, ModifyPrintActivity.class);
+					startActivity(intent);
+				}
+				
+//			}
 	}
-	}
-
 

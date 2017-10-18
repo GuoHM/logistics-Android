@@ -15,5 +15,8 @@
     <string name="title_activity_search_modify_print">SearchModifyPrintActivity</string>
     <string name="title_activity_modify_print">ModifyPrintActivity</string>
     <string name="title_activity_write">WriteActivity</string>
+    <string name="title_activity_admin_main">AdminMainActivity</string>
+    <string name="title_activity_province_manage">ProvinceManageActivity</string>
+    <string name="title_activity_district_manage">DistrictManageActivity</string>
 
 </resources>

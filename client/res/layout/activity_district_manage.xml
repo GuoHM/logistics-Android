@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   
+
+
+ <TextView
+     android:id="@+id/TextView03"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="省份：" />
+
+ <EditText
+     android:id="@+id/provincename"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="textPostalAddress" />
+
+ <TextView
+     android:id="@+id/name_label"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="城市：" />
+
+ <EditText
+     android:id="@+id/cityname"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="textPostalAddress" />
+
+ <TextView
+     android:id="@+id/TextView01"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="区县：" />
+
+ <EditText
+     android:id="@+id/districtname"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="textPostalAddress" >
+
+     <requestFocus />
+ </EditText>
+
+ <TextView
+     android:id="@+id/TextView02"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="密码：" />
+
+ <EditText
+     android:id="@+id/districtpw"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="phone" />
+	
+	<LinearLayout android:id="@+id/LinearLayout01" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		<Button android:id="@+id/adddistrict" 
+			android:text="新增区县" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding = "5dip"
+			android:layout_weight="1">
+		</Button>
+		<Button android:id="@+id/showall" 
+			android:text="根据省市显示区县" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding = "5dip"
+			android:layout_weight="1">
+		</Button>
+		<Button android:id="@+id/clear" 
+			android:text="清除显示" 
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:padding = "5dip"
+			android:layout_weight="1">
+		</Button>
+		
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/LinearLayout03" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content">
+		<TextView android:text="ID："
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:padding = "3dip">
+		</TextView>
+		<EditText android:id="@+id/districtid"
+			android:layout_width="50dip" 
+			android:layout_height="wrap_content"
+			android:padding = "3dip"
+			android:layout_weight="1">
+		</EditText>
+
+		<Button
+		    android:id="@+id/query"
+		    android:layout_width="50dip"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:padding="3dip"
+		    android:text="ID查询" />
+
+		<Button android:id="@+id/delete" 
+			android:text="ID删除" 
+			android:layout_width="50dip"
+			android:layout_height="wrap_content"
+			android:padding = "3dip"
+			android:layout_weight="1">
+		</Button>	
+			
+</LinearLayout>
+	
+	<TextView android:id="@+id/label"
+		android:text="查询结果："
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	<ScrollView  android:layout_width="fill_parent"
+    	android:layout_height="fill_parent">
+    	<LinearLayout android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:orientation="vertical">
+			<TextView android:id="@+id/display"
+				android:text=""
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content">
+			</TextView>
+		</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>
+
+

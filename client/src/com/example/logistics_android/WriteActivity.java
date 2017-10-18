@@ -3,27 +3,22 @@ package com.example.logistics_android;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
-
 import com.example.util.JsonHelper;
-
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 import android.widget.TextView;
-import android.widget.RadioGroup.OnCheckedChangeListener;
+
 
 public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 	private TextView goodsIdField;
@@ -40,7 +35,6 @@ public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 	private EditText receiverDistrictField;
 	private EditText receiverAddressField;
 	private Button ok;
-	private Button reset;
 	private JsonHelper json;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +73,6 @@ public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 		receiverDistrictField = (EditText) findViewById(R.id.receiverDistrictField);
 		receiverAddressField = (EditText) findViewById(R.id.receiverAddressField);
 		ok = (Button) findViewById(R.id.write_ok);
-		reset = (Button) findViewById(R.id.reset);
 	}
 
 	private void setListener() {
@@ -152,6 +145,7 @@ public class WriteActivity extends Activity {//ÌîÐ´¶©µ¥
 		}
 	}
 	
+	@SuppressLint("SimpleDateFormat")
 	private String getGoodsId(){
 		SimpleDateFormat f = new SimpleDateFormat("MMddHHmmss");
         Date date = new Date();

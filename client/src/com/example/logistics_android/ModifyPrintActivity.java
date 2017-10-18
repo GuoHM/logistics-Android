@@ -10,27 +10,29 @@ import com.example.util.JsonHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class ModifyPrintActivity extends Activity {
 
-	private EditText searchResult_goodsId;
-	private EditText searchResult_senderName;
-	private EditText searchResult_senderPhone;
-	private EditText searchResult_senderProvince;
-	private EditText searchResult_senderCity;
-	private EditText searchResult_senderDistrict;
-	private EditText searchResult_senderAddress;
-	private EditText searchResult_receiverName;
-	private EditText searchResult_receiverPhone;
-	private EditText searchResult_receiverProvince;
-	private EditText searchResult_receiverCity;
-	private EditText searchResult_receiverDistrict;
-	private EditText searchResult_receiverAddress;
+	private TextView goodsIdField;
+	private EditText senderNameField;
+	private EditText senderPhoneField;
+	private EditText senderProvinceField;
+	private EditText senderCityField;
+	private EditText senderDistrictField;
+	private EditText senderAddressField;
+	private EditText receiverNameField;
+	private EditText receiverPhoneField;
+	private EditText receiverProvinceField;
+	private EditText receiverCityField;
+	private EditText receiverDistrictField;
+	private EditText receiverAddressField;
 	private Button save;
 	private Button print;
 	private JsonHelper json;
@@ -40,26 +42,60 @@ public class ModifyPrintActivity extends Activity {
 		this.json = new JsonHelper();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modify_print);
-		initView();
+		try {
+			initView();
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setListener();
 	}
 
-	private void initView() {
-		searchResult_goodsId = (EditText) findViewById(R.id.searchResult_goodsId);
-		searchResult_senderName = (EditText) findViewById(R.id.searchResult_senderName);
-		searchResult_senderPhone = (EditText) findViewById(R.id.searchResult_senderPhone);
-		searchResult_senderProvince = (EditText) findViewById(R.id.searchResult_senderProvince);
-		searchResult_senderCity = (EditText) findViewById(R.id.searchResult_senderCity);
-		searchResult_senderDistrict = (EditText) findViewById(R.id.searchResult_senderDistrict);
-		searchResult_senderAddress = (EditText) findViewById(R.id.searchResult_senderAddress);
-		searchResult_receiverName = (EditText) findViewById(R.id.searchResult_receiverName);
-		searchResult_receiverPhone = (EditText) findViewById(R.id.searchResult_receiverPhone);
-		searchResult_receiverProvince = (EditText) findViewById(R.id.searchResult_receiverProvince);
-		searchResult_receiverCity = (EditText) findViewById(R.id.searchResult_receiverCity);
-		searchResult_receiverDistrict = (EditText) findViewById(R.id.searchResult_receiverDistrict);
-		searchResult_receiverAddress = (EditText) findViewById(R.id.searchResult_receiverAddress);
+	private void initView() throws ClientProtocolException, IOException, JSONException {
+		
+		goodsIdField = (TextView) findViewById(R.id.goodsIdField);
+		senderNameField = (EditText) findViewById(R.id.senderNameField);
+		senderPhoneField = (EditText) findViewById(R.id.senderPhoneField);
+		senderProvinceField = (EditText) findViewById(R.id.senderProvinceField);
+		senderCityField = (EditText) findViewById(R.id.senderCityField);
+		senderDistrictField = (EditText) findViewById(R.id.senderDistrictField);
+		senderAddressField = (EditText) findViewById(R.id.senderAddressField);
+		receiverNameField = (EditText) findViewById(R.id.receiverNameField);
+		receiverPhoneField = (EditText) findViewById(R.id.receiverPhoneField);
+		receiverProvinceField = (EditText) findViewById(R.id.receiverProvinceField);
+		receiverCityField = (EditText) findViewById(R.id.receiverCityField);
+		receiverDistrictField = (EditText) findViewById(R.id.receiverDistrictField);
+		receiverAddressField = (EditText) findViewById(R.id.receiverAddressField);
 		save = (Button) findViewById(R.id.save);
 		print = (Button) findViewById(R.id.print);
+		Intent intent = getIntent();
+		String goodsId = intent.getStringExtra("currentGoods");
+		
+		json.setParameter("currentGoods", goodsId);
+		json.processURL("viewGoods");
+		goodsIdField .setText(json.getJsonData("goodsId").toString());
+		senderNameField.setText(json.getJsonData("receiverName").toString());
+		senderPhoneField.setText(json.getJsonData("receiverPhone").toString());
+		senderProvinceField .setText("收件人省份:" + json.getJsonData("receiverProvince").toString());
+		senderCityField .setText("收件人城市：" + json.getJsonData("receiverCity").toString());
+		senderDistrictField.setText("收件人区县：" + json.getJsonData("receiverDistrict").toString());
+		senderAddressField .setText("收件人地址：" + json.getJsonData("receiverAddress").toString());
+		receiverNameField .setText("寄件人姓名：" + json.getJsonData("senderName").toString());
+		receiverPhoneField .setText("寄件人电话：" + json.getJsonData("senderPhone").toString());
+		receiverProvinceField .setText("寄件人省份：" + json.getJsonData("senderProvince").toString());
+		receiverDistrictField .setText("寄件人区县：" + json.getJsonData("senderDistrict").toString());
+		receiverCityField .setText("寄件人城市：" + json.getJsonData("senderCity").toString());
+		receiverAddressField.setText("寄件人地址：" + json.getJsonData("senderAddress").toString());
+	
+		
+		
+		
 	}
 
 	private void setListener() {
@@ -87,34 +123,22 @@ public class ModifyPrintActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String goodsId = searchResult_goodsId.getText().toString();
-				String senderName = searchResult_senderName.getText()
-						.toString();
-				String senderPhone = searchResult_senderPhone.getText()
-						.toString();
-				String senderProvince = searchResult_senderProvince.getText()
-						.toString();
-				String senderCity = searchResult_senderCity.getText()
-						.toString();
-				String senderDistrict = searchResult_senderDistrict.getText()
-						.toString();
-				String senderAddress = searchResult_senderAddress.getText()
-						.toString();
+				String goodsId = goodsIdField.getText().toString();
+				String senderName = senderNameField.getText().toString();
+				String senderPhone = senderPhoneField.getText().toString();
+				String senderProvince = senderProvinceField.getText().toString();
+				String senderCity = senderCityField.getText().toString();
+				String senderDistrict = senderDistrictField.getText().toString();
+				String senderAddress = senderAddressField.getText().toString();
 
-				String receiverName = searchResult_receiverName.getText()
-						.toString();
-				String receiverPhone = searchResult_receiverPhone.getText()
-						.toString();
-				String receiverProvince = searchResult_receiverProvince
-						.getText().toString();
-				String receiverCity = searchResult_receiverCity.getText()
-						.toString();
-				String receiverDistrict = searchResult_receiverDistrict
-						.getText().toString();
-				String receiverAddress = searchResult_receiverAddress.getText()
-						.toString();
+				String receiverName = receiverNameField.getText().toString();
+				String receiverPhone = receiverPhoneField.getText().toString();
+				String receiverProvince = receiverProvinceField.getText().toString();
+				String receiverCity = receiverCityField.getText().toString();
+				String receiverDistrict = receiverDistrictField.getText().toString();
+				String receiverAddress = receiverAddressField.getText().toString();
 				try {
-					writeService(goodsId, senderName, senderPhone,
+					modifyGoodsinfoService(goodsId, senderName, senderPhone,
 							senderProvince, senderCity, senderDistrict,
 							senderAddress, receiverName, receiverPhone,
 							receiverProvince, receiverCity, receiverDistrict,
@@ -133,7 +157,7 @@ public class ModifyPrintActivity extends Activity {
 		});
 	}
 
-	private void writeService(String goodsId, String senderName,
+	private void modifyGoodsinfoService(String goodsId, String senderName,
 			String senderPhone, String senderProvince, String senderCity,
 			String senderDistrict, String senderAddress, String receiverName,
 			String receiverPhone, String receiverProvince, String receiverCity,

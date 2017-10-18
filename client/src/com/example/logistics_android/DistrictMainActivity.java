@@ -19,18 +19,21 @@ public class DistrictMainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.json = new JsonHelper();
     	setContentView(R.layout.activity_district);
 		final Button btn1=(Button)findViewById(R.id.district_modifyprint);
 		final Button btn2=(Button)findViewById(R.id.district_sort);
 		final Button btn3=(Button)findViewById(R.id.district_send);
      	btn1.setOnClickListener(new OnClickListener(){//点击修改打印进行跳转
 			public void onClick(View view){
-				Intent intent=new Intent(DistrictMainActivity.this, SearchActivity.class);
+				Intent intent=new Intent(DistrictMainActivity.this, SearchModifyPrintActivity.class);
+				startActivity(intent);
 		}
 	});
 		btn2.setOnClickListener(new OnClickListener(){//添加状态信息，表示分拣成功
 			public void onClick(View view){
 				try {
+				
 					json.processURL("adddistrictListStatus");
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block

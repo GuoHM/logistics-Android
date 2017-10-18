@@ -109,11 +109,23 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		}
 	}
 
-	public String viewGoods() throws Exception {
+	public void viewGoods() throws Exception {
 		Goods goodsInfo = goodsService.getGoodsBygoodsId(currentGoods);
-		context.getSession().put("goodsInfo", goodsInfo);
-		context.getSession().put("show", "show");
-		return SUCCESS;
+		json.put(goodsId, goodsInfo.getGoodsId());
+		json.put(senderName, goodsInfo.getSenderName());
+		json.put(senderPhone, goodsInfo.getSenderPhone());
+		json.put(senderProvince, goodsInfo.getSenderProvince());
+		json.put(senderCity, goodsInfo.getSenderCity());
+		json.put(senderDistrict, goodsInfo.getSenderDistrict());
+		
+		json.put(senderAddress, goodsInfo.getSenderAddress());
+		json.put(receiverName, goodsInfo.getReceiverName());
+		json.put(receiverPhone, goodsInfo.getReceiverPhone());
+		json.put(receiverProvince, goodsInfo.getReceiverProvince());
+		json.put(receiverCity, goodsInfo.getReceiverCity());
+		json.put(receiverDistrict, goodsInfo.getReceiverDistrict());
+		json.output();
+	    return;
 	}
 
 	public String modifyGoodsinfo() throws Exception { // 单号查询显示后，进行修改

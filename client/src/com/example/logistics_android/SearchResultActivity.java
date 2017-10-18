@@ -1,24 +1,16 @@
 package com.example.logistics_android;
 
 import java.io.IOException;
-import java.util.List;
-
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
-
-import com.example.bean.*;
 import com.example.util.JsonHelper;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.TextView;
 
 public class SearchResultActivity extends Activity {

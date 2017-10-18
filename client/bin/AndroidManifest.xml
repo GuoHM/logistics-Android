@@ -68,6 +68,18 @@
             android:name=".WriteActivity"
             android:label="@string/title_activity_write" >
         </activity>
+        <activity
+            android:name=".AdminMainActivity"
+            android:label="@string/title_activity_admin_main" >
+        </activity>
+        <activity
+            android:name=".ProvinceManageActivity"
+            android:label="@string/title_activity_province_manage" >
+        </activity>
+        <activity
+            android:name=".DistrictManageActivity"
+            android:label="@string/title_activity_district_manage" >
+        </activity>
     </application>
 
 </manifest>

@@ -6,15 +6,11 @@ import java.io.UnsupportedEncodingException;
 import org.apache.http.client.ClientProtocolException;
 
 import com.example.util.JsonHelper;
-
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioGroup;
+import android.widget.Button;;
 
 public class ProvinceMainActivity extends Activity {
 	private JsonHelper json;
