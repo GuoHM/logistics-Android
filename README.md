@@ -43,3 +43,8 @@
 <td>Add send goods function</td>
 <td>Yang Hanxiao</td>
 </tr>
+<tr>
+<td>2017.10.18</td>
+<td>Modify search goods function,add status</td>
+<td>Yang Hanxiao</td>
+</tr>
