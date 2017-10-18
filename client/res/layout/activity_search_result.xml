@@ -13,47 +13,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/searchResult_status1"
+        android:id="@+id/searchResult_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text=" " />
 
-    <TextView
-        android:id="@+id/searchResult_status2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text=" " />
-
-    <TextView
-        android:id="@+id/searchResult_status3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text=" " />
-
-    <TextView
-        android:id="@+id/searchResult_status4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text=" " />
-
-    <TextView
-        android:id="@+id/searchResult_status5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text=" " />
-
-    <TextView
-        android:id="@+id/searchResult_status6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text=" " />
-
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"

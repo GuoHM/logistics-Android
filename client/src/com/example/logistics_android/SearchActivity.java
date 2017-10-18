@@ -66,8 +66,6 @@ public class SearchActivity extends Activity {
 	}
 	
 	private void searchService(String goodsId) throws ClientProtocolException, IOException, JSONException{
-//		json.setParameter("searchGoodsId", goodsId);
-//		json.processURL("searchGoodsByID");
 //		if (json.getJsonData("error")!=null){
 //			AlertDialog.Builder builder = new Builder(SearchActivity.this);
 //			builder.setTitle("错误").setMessage("无此订单").setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -78,13 +76,8 @@ public class SearchActivity extends Activity {
 //				}
 //			}).create().show();
 //		} else {
-			Intent intent = new Intent();
-//			Goods goods = json.getJsonData(Goods.class);
-//			Log.d("11111111111111111111111",goods.toString());
-//			List<GoodsStatus> statuslist = (List<GoodsStatus>) json.getJsonData("statuslist");
-//			
+			Intent intent = new Intent();	
 			intent.putExtra("searchGoodsId", goodsId);
-//			intent.putExtra("statuslist", (Serializable)statuslist);
 			intent.setClass(SearchActivity.this, SearchResultActivity.class);
 			startActivity(intent);
 		}

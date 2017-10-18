@@ -23,12 +23,7 @@ import android.widget.TextView;
 
 public class SearchResultActivity extends Activity {
 	private TextView searchResult_goodsId;
-	private TextView searchResult_status1;
-	private TextView searchResult_status2;
-	private TextView searchResult_status3;
-	private TextView searchResult_status4;
-	private TextView searchResult_status5;
-	private TextView searchResult_status6;
+	private TextView searchResult_status;
 	private TextView searchResult_receiverName;
 	private TextView searchResult_receiverProvince;
 	private TextView searchResult_receiverCity;
@@ -42,12 +37,6 @@ public class SearchResultActivity extends Activity {
 	private TextView searchResult_senderAddress;
 	private TextView searchResult_senderPhone;
 	private Button searchResult_return;
-	private final String CONDITION1 = "订单已提交";
-	private final String CONDITION2 = "快递已到达A区县营业点";
-	private final String CONDITION3 = "快递已到达A省分拣中心";
-	private final String CONDITION4 = "快递已派送至A省分拣中心";
-	private final String CONDITION5 = "快递已派送至A区县营业点";
-	private final String CONDITION6 = "快递已完成";
 	private JsonHelper json;
 
 	@Override
@@ -72,12 +61,7 @@ public class SearchResultActivity extends Activity {
 
 	private void initView() throws ClientProtocolException, IOException, JSONException {
 		searchResult_goodsId = (TextView) findViewById(R.id.searchResult_goodsId);
-		searchResult_status1 = (TextView) findViewById(R.id.searchResult_status1);
-		searchResult_status2 = (TextView) findViewById(R.id.searchResult_status2);
-		searchResult_status3 = (TextView) findViewById(R.id.searchResult_status3);
-		searchResult_status4 = (TextView) findViewById(R.id.searchResult_status4);
-		searchResult_status5 = (TextView) findViewById(R.id.searchResult_status5);
-		searchResult_status6 = (TextView) findViewById(R.id.searchResult_status6);
+		searchResult_status = (TextView) findViewById(R.id.searchResult_status);
 		searchResult_receiverName = (TextView) findViewById(R.id.searchResult_receiverName);
 		searchResult_receiverProvince = (TextView) findViewById(R.id.searchResult_receiverProvince);
 		searchResult_receiverCity = (TextView) findViewById(R.id.searchResult_receiverCity);
@@ -96,49 +80,7 @@ public class SearchResultActivity extends Activity {
 		
 		json.setParameter("searchGoodsId", goodsId);
 		json.processURL("searchGoodsByID");
-
-		// Goods goods = intent.getParcelableExtra("getGoodsByID");
-		// List<GoodsStatus> statuslist = (List<GoodsStatus>)
-		// getIntent().getSerializableExtra("statuslist");
-		// String[] s = new String[6];
-		// int i = 0;
-		// for (GoodsStatus n : statuslist) {
-		// switch (n.getConditions().getConditionId()) {
-		// case "1":
-		// s[i] = CONDITION1 + ",单号：" + n.getGoods().getGoodsId();
-		// break;
-		// case "2":
-		// s[i] = CONDITION2.replaceAll("A", n.getGoods().getSenderDistrict());
-		// break;
-		// case "3":
-		// s[i] = CONDITION3.replaceAll("A", n.getGoods().getSenderProvince());
-		// break;
-		// case "4":
-		// s[i] = CONDITION4.replaceAll("A",
-		// n.getGoods().getReceiverProvince());
-		// break;
-		// case "5":
-		// s[i] = CONDITION5.replaceAll("A",
-		// n.getGoods().getReceiverDistrict());
-		// break;
-		// case "6":
-		// s[i] = CONDITION6;
-		// break;
-		// }
-		// i++;
-		// }
-		// for (String k : s) {
-		// if (k == null) {
-		// k = " ";
-		// }
-		// }
-		// searchResult_status1.setText(s[0]);
-		// searchResult_status2.setText(s[1]);
-		// searchResult_status3.setText(s[2]);
-		// searchResult_status4.setText(s[3]);
-		// searchResult_status5.setText(s[4]);
-		// searchResult_status6.setText(s[5]);
-		//
+		searchResult_status.setText(json.getJsonData("status").toString().replaceAll("a", "\n"));
 		searchResult_goodsId.setText("单号：" + json.getJsonData("goodsId").toString());
 		searchResult_receiverName.setText("收件人姓名：" + json.getJsonData("receiverName").toString());
 		searchResult_receiverProvince.setText("收件人省份:" + json.getJsonData("receiverProvince").toString());
