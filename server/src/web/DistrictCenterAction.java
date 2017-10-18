@@ -56,48 +56,50 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		Goods goods = goodsService.getGoodsBygoodsId(searchGoodsId);
 		List<GoodsStatus> statuslist = goodsStatusService.getGoodsStatusByGoodsId(searchGoodsId);
 		if (goods != null) {
-			String s = "";
+			String status = "";
 			ResourceBundle res = ResourceBundle.getBundle("status");
 			for (GoodsStatus i : statuslist) {
 				switch (i.getConditions().getConditionId()) {
 				case "1":
-					s += res.getString(i.getConditions().getConditionId()) + "单号：" + goods.getGoodsId() + "a";
+					status += res.getString(i.getConditions().getConditionId()) + "单号：" + goods.getGoodsId() + "a";
 					break;
 				case "2":
-					s += res.getString(i.getConditions().getConditionId()).replaceAll("A", goods.getSenderDistrict())
-							+ "a";
+					status += res.getString(i.getConditions().getConditionId()).replaceAll("A",
+							goods.getSenderDistrict()) + "a";
 					break;
 				case "3":
-					s += res.getString(i.getConditions().getConditionId()).replaceAll("A", goods.getSenderProvince())
-							+ "a";
+					status += res.getString(i.getConditions().getConditionId()).replaceAll("A",
+							goods.getSenderProvince()) + "a";
 					break;
 				case "4":
-					s += res.getString(i.getConditions().getConditionId()).replaceAll("A", goods.getReceiverProvince())
-							+ "a";
+					status += res.getString(i.getConditions().getConditionId()).replaceAll("A",
+							goods.getReceiverProvince()) + "a";
 					break;
 				case "5":
-					s += res.getString(i.getConditions().getConditionId()).replaceAll("A", goods.getReceiverDistrict())
-							+ "a";
+					status += res.getString(i.getConditions().getConditionId()).replaceAll("A",
+							goods.getReceiverDistrict()) + "a";
 					break;
 				case "6":
-					s += res.getString(i.getConditions().getConditionId()) + "a";
+					status += res.getString(i.getConditions().getConditionId()) + "a";
 					break;
 				}
 			}
-			json.put("status", s);
-			json.put("goodsId", goods.getGoodsId());
-			json.put("receiverAddress", goods.getReceiverAddress());
-			json.put("receiverProvince", goods.getReceiverProvince());
-			json.put("receiverCity", goods.getReceiverCity());
-			json.put("receiverName", goods.getReceiverName());
-			json.put("receiverPhone", goods.getReceiverPhone());
-			json.put("receiverDistrict", goods.getReceiverDistrict());
-			json.put("senderAddress", goods.getSenderAddress());
-			json.put("senderProvince", goods.getSenderProvince());
-			json.put("senderCity", goods.getSenderCity());
-			json.put("senderName", goods.getSenderName());
-			json.put("senderPhone", goods.getSenderPhone());
-			json.put("senderDistrict", goods.getSenderDistrict());
+			json.put("status", status);
+			String receiverInfo = "", senderInfo = "";
+			receiverInfo += "收件人姓名b" + goods.getReceiverName() + "a";
+			receiverInfo += "收件人省份b" + goods.getReceiverProvince() + "a";
+			receiverInfo += "收件人城市b" + goods.getReceiverCity() + "a";
+			receiverInfo += "收件人区县b" + goods.getReceiverDistrict() + "a";
+			receiverInfo += "收件人地址b" + goods.getReceiverAddress() + "a";
+			receiverInfo += "收件人电话b" + goods.getReceiverPhone() + "a";
+			senderInfo += "寄件人姓名b" + goods.getSenderName() + "a";
+			senderInfo += "寄件人省份b" + goods.getSenderProvince() + "a";
+			senderInfo += "寄件人城市b" + goods.getSenderCity() + "a";
+			senderInfo += "寄件人区县b" + goods.getSenderDistrict() + "a";
+			senderInfo += "寄件人地址b" + goods.getSenderAddress() + "a";
+			senderInfo += "寄件人电话b" + goods.getSenderPhone() + "a";
+			json.put("receiverInfo", receiverInfo);
+			json.put("senderInfo", senderInfo);
 			json.output();
 			return;
 		} else {

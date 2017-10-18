@@ -187,7 +187,7 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
         goodsStatus.setConditions(conditionsService.getConditionsByConditonsId("1"));
         goodsStatusService.save(goodsStatus);
         if (goods != null) {
-            json.put("goodsinfo", goods);
+            json.put("success", 1);
             json.output();
             return;
         }
