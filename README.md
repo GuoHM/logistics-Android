@@ -48,3 +48,8 @@
 <td>Modify search goods function,add status,improve send goods function</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.18</td>
+<td>Add some functions</td>
+<td>Yang Hanxiao</td>
+</tr>
