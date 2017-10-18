@@ -1,6 +1,8 @@
 package com.example.logistics_android;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
@@ -9,6 +11,9 @@ import com.example.util.JsonHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -60,9 +65,7 @@ public class WriteActivity extends Activity {//填写订单
 	private void initView() throws ClientProtocolException, IOException, JSONException {
 		//	goodsIdField = json.getJsonData(key);
 		goodsIdField = (TextView) findViewById(R.id.goodsIdField);
-		json.processURL("getGoodsID");
-		goodsIdField.setText(json.getJsonData("goodsID").toString());
-
+		goodsIdField.setText(getGoodsId());
 		senderNameField = (EditText) findViewById(R.id.senderNameField);
 		senderPhoneField = (EditText) findViewById(R.id.senderPhoneField);
 		senderProvinceField = (EditText) findViewById(R.id.senderProvinceField);
@@ -135,6 +138,28 @@ public class WriteActivity extends Activity {//填写订单
 		json.setParameter("receiverCity", receiverCity);
 		json.setParameter("receiverDistrict", receiverDistrict);
 		json.setParameter("receiverAddress", receiverAddress);
-		json.processURL("addGoods");		
+		json.processURL("addGoods");	
+		Integer isSuccess=(Integer) json.getJsonData("success");
+		if(isSuccess!=0){
+			AlertDialog.Builder builder = new Builder(WriteActivity.this);
+			builder.setTitle("成功").setMessage("提交成功").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).create().show();
+		}
+	}
+	
+	private String getGoodsId(){
+		SimpleDateFormat f = new SimpleDateFormat("MMddHHmmss");
+        Date date = new Date();
+        String s = f.format(date);
+        s += (int) (Math.random() * 10) + "";
+        s += (int) (Math.random() * 10) + "";
+        s += (int) (Math.random() * 10) + "";
+        s += (int) (Math.random() * 10) + "";
+        return s;
 	}
 }

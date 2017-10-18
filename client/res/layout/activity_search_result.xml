@@ -29,42 +29,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/searchResult_receiverName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_receiverProvince"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_receiverCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_receiverDistcit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_receiverAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_receiverPhone"
+        android:id="@+id/searchResult_receiverInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -78,37 +43,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/searchResult_senderName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_senderProvince"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_senderCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_senderDistrict"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_senderAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/searchResult_senderPhone"
+        android:id="@+id/searchResult_senderInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView" />
