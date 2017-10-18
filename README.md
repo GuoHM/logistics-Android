@@ -38,3 +38,8 @@
 <td>Add search goods function</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.17</td>
+<td>Add send goods function</td>
+<td>Yang Hanxiao</td>
+</tr>
