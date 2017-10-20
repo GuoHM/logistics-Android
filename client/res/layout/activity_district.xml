@@ -23,14 +23,29 @@
         android:layout_y="130dp"
         android:text="分拣" />
 
-   
+    <Button
+        android:id="@+id/district_exit"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_x="72dp"
+        android:layout_y="337dp"
+        android:text="退出登陆" />
 
     <Button
         android:id="@+id/district_send"
-        android:layout_width="166dp"
-        android:layout_height="63dp"
-        android:layout_x="75dp"
-        android:layout_y="242dp"
+        android:layout_width="155dp"
+        android:layout_height="62dp"
+        android:layout_x="65dp"
+        android:layout_y="239dp"
         android:text="派送" />
+
+    <TextView
+        android:id="@+id/district_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="12dp"
+        android:layout_y="13dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </AbsoluteLayout>

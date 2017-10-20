@@ -104,10 +104,11 @@ public class LoginActivity extends Activity {
 			break;
 		case 1:
 			intent = new Intent(LoginActivity.this, DistrictMainActivity.class);
+			intent.putExtra("center", json.getJsonData("center").toString());
 			startActivity(intent);
 			break;
 		case 2:
-			intent = new Intent(LoginActivity.this, DistrictMainActivity.class);
+			intent = new Intent(LoginActivity.this, ProvinceMainActivity.class);
 			startActivity(intent);
 			break;
 		case 3:

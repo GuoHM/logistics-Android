@@ -80,6 +80,10 @@
             android:name=".DistrictManageActivity"
             android:label="@string/title_activity_district_manage" >
         </activity>
+        <activity
+            android:name=".DistrictSortActivity"
+            android:label="@string/title_activity_district_sort" >
+        </activity>
     </application>
 
 </manifest>

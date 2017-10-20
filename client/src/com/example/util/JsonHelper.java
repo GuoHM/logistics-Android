@@ -49,7 +49,7 @@ public class JsonHelper {
 		this.request = new HttpGet(processURL);
 		this.request.addHeader("Accept", "text/json");
 		httpclient = new DefaultHttpClient();
-		//this.response = httpclient.execute(request);
+		this.response = httpclient.execute(request);
 	}
 
 	public Object getJsonData(String key) throws ClientProtocolException, IOException, JSONException {

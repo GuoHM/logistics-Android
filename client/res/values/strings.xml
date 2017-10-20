@@ -18,5 +18,6 @@
     <string name="title_activity_admin_main">AdminMainActivity</string>
     <string name="title_activity_province_manage">ProvinceManageActivity</string>
     <string name="title_activity_district_manage">DistrictManageActivity</string>
+    <string name="title_activity_district_sort">DistrictSortActivity</string>
 
 </resources>

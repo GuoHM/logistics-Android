@@ -10,6 +10,9 @@ import com.example.util.JsonHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -58,7 +61,7 @@ public class ModifyPrintActivity extends Activity {
 	}
 
 	private void initView() throws ClientProtocolException, IOException, JSONException {
-		
+
 		goodsIdField = (TextView) findViewById(R.id.goodsIdField);
 		senderNameField = (EditText) findViewById(R.id.senderNameField);
 		senderPhoneField = (EditText) findViewById(R.id.senderPhoneField);
@@ -76,26 +79,22 @@ public class ModifyPrintActivity extends Activity {
 		print = (Button) findViewById(R.id.print);
 		Intent intent = getIntent();
 		String goodsId = intent.getStringExtra("currentGoods");
-		
 		json.setParameter("currentGoods", goodsId);
 		json.processURL("viewGoods");
-		goodsIdField .setText(json.getJsonData("goodsId").toString());
-		senderNameField.setText(json.getJsonData("receiverName").toString());
-		senderPhoneField.setText(json.getJsonData("receiverPhone").toString());
-		senderProvinceField .setText("收件人省份:" + json.getJsonData("receiverProvince").toString());
-		senderCityField .setText("收件人城市：" + json.getJsonData("receiverCity").toString());
-		senderDistrictField.setText("收件人区县：" + json.getJsonData("receiverDistrict").toString());
-		senderAddressField .setText("收件人地址：" + json.getJsonData("receiverAddress").toString());
-		receiverNameField .setText("寄件人姓名：" + json.getJsonData("senderName").toString());
-		receiverPhoneField .setText("寄件人电话：" + json.getJsonData("senderPhone").toString());
-		receiverProvinceField .setText("寄件人省份：" + json.getJsonData("senderProvince").toString());
-		receiverDistrictField .setText("寄件人区县：" + json.getJsonData("senderDistrict").toString());
-		receiverCityField .setText("寄件人城市：" + json.getJsonData("senderCity").toString());
-		receiverAddressField.setText("寄件人地址：" + json.getJsonData("senderAddress").toString());
-	
-		
-		
-		
+		goodsIdField.setText(json.getJsonData("goodsId").toString());
+		senderNameField.setText(json.getJsonData("senderName").toString());
+		senderPhoneField.setText(json.getJsonData("senderPhone").toString());
+		senderProvinceField.setText(json.getJsonData("senderProvince").toString());
+		senderCityField.setText(json.getJsonData("senderCity").toString());
+		senderDistrictField.setText(json.getJsonData("senderDistrict").toString());
+		senderAddressField.setText(json.getJsonData("senderAddress").toString());
+		receiverNameField.setText(json.getJsonData("receiverName").toString());
+		receiverPhoneField.setText(json.getJsonData("receiverPhone").toString());
+		receiverProvinceField.setText(json.getJsonData("receiverProvince").toString());
+		receiverDistrictField.setText(json.getJsonData("receiverDistrict").toString());
+		receiverCityField.setText(json.getJsonData("receiverCity").toString());
+		receiverAddressField.setText(json.getJsonData("receiverAddress").toString());
+
 	}
 
 	private void setListener() {
@@ -105,7 +104,21 @@ public class ModifyPrintActivity extends Activity {
 			public void onClick(View v) {
 
 				try {
-					json.processURL("addStatus");
+					String goodsId = goodsIdField.getText().toString();
+					json.setParameter("goodsId", goodsId);
+					json.processURL("printinfo");
+					if ((Integer) json.getJsonData("success") == 1) {
+						AlertDialog.Builder builder = new Builder(ModifyPrintActivity.this);
+						builder.setTitle("成功").setMessage("打印成功")
+								.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										dialog.dismiss();
+									}
+								}).create().show();
+					}
+
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,6 +126,9 @@ public class ModifyPrintActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -130,7 +146,6 @@ public class ModifyPrintActivity extends Activity {
 				String senderCity = senderCityField.getText().toString();
 				String senderDistrict = senderDistrictField.getText().toString();
 				String senderAddress = senderAddressField.getText().toString();
-
 				String receiverName = receiverNameField.getText().toString();
 				String receiverPhone = receiverPhoneField.getText().toString();
 				String receiverProvince = receiverProvinceField.getText().toString();
@@ -138,11 +153,9 @@ public class ModifyPrintActivity extends Activity {
 				String receiverDistrict = receiverDistrictField.getText().toString();
 				String receiverAddress = receiverAddressField.getText().toString();
 				try {
-					modifyGoodsinfoService(goodsId, senderName, senderPhone,
-							senderProvince, senderCity, senderDistrict,
-							senderAddress, receiverName, receiverPhone,
-							receiverProvince, receiverCity, receiverDistrict,
-							receiverAddress);
+					modifyGoodsinfoService(goodsId, senderName, senderPhone, senderProvince, senderCity, senderDistrict,
+							senderAddress, receiverName, receiverPhone, receiverProvince, receiverCity,
+							receiverDistrict, receiverAddress);
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -157,11 +170,9 @@ public class ModifyPrintActivity extends Activity {
 		});
 	}
 
-	private void modifyGoodsinfoService(String goodsId, String senderName,
-			String senderPhone, String senderProvince, String senderCity,
-			String senderDistrict, String senderAddress, String receiverName,
-			String receiverPhone, String receiverProvince, String receiverCity,
-			String receiverDistrict, String receiverAddress)
+	private void modifyGoodsinfoService(String goodsId, String senderName, String senderPhone, String senderProvince,
+			String senderCity, String senderDistrict, String senderAddress, String receiverName, String receiverPhone,
+			String receiverProvince, String receiverCity, String receiverDistrict, String receiverAddress)
 			throws ClientProtocolException, IOException, JSONException {
 		json.setParameter("goodsId", goodsId);
 		json.setParameter("senderName", senderName);
@@ -177,6 +188,16 @@ public class ModifyPrintActivity extends Activity {
 		json.setParameter("receiverDistrict", receiverDistrict);
 		json.setParameter("receiverAddress", receiverAddress);
 		json.processURL("modifyGoodsinfo");
+		if ((Integer) json.getJsonData("success") == 1) {
+			AlertDialog.Builder builder = new Builder(ModifyPrintActivity.this);
+			builder.setTitle("成功").setMessage("修改成功").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).create().show();
+		}
 	}
 
 }

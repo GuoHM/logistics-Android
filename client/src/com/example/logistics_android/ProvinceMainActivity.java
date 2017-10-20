@@ -16,6 +16,7 @@ public class ProvinceMainActivity extends Activity {
 	private JsonHelper json;
 	private Button province_sort;
 	private Button province_send;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		this.json = new JsonHelper();
 		super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class ProvinceMainActivity extends Activity {
 		province_sort = (Button) findViewById(R.id.province_sort);
 		province_send = (Button) findViewById(R.id.province_send);
 	}
+
 	private void setListener() {
 		province_sort.setOnClickListener(new OnClickListener() {
 
@@ -48,7 +50,7 @@ public class ProvinceMainActivity extends Activity {
 				}
 			}
 		});
-		
+
 		province_send.setOnClickListener(new OnClickListener() {
 
 			@Override

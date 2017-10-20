@@ -20,8 +20,16 @@
         android:id="@+id/province_send"
         android:layout_width="155dp"
         android:layout_height="64dp"
-        android:layout_x="82dp"
-        android:layout_y="244dp"
+        android:layout_x="94dp"
+        android:layout_y="200dp"
         android:text="发送" />
+
+    <Button
+        android:id="@+id/province_exit"
+        android:layout_width="129dp"
+        android:layout_height="78dp"
+        android:layout_x="93dp"
+        android:layout_y="334dp"
+        android:text="退出登录" />
 
 </AbsoluteLayout>
