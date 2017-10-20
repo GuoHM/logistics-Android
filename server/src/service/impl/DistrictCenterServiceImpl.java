@@ -23,9 +23,9 @@ public class DistrictCenterServiceImpl implements IDistrictCenterService {
 	}
 
 
-	public DistrictCenter getDistrictCenter(String district, String city, String province) throws Exception {
-		if(district!=null&&city!=null&&province!=null){
-			return districtCenterDao.getDistrictCenter(district, city, province);
+	public DistrictCenter getDistrictCenter(String district) throws Exception {
+		if(district!=null){
+			return districtCenterDao.getDistrictCenter(district);
 		}else{
 		return null;
 		}

@@ -215,8 +215,7 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 			goodsStatusId.setConditionId("5");
 			GoodsStatus goodsStatus = new GoodsStatus();
 			goodsStatus.setId(goodsStatusId);
-			DistrictCenter districtCenter = districtCenterService.getDistrictCenter(goods.getReceiverDistrict(),
-					goods.getReceiverCity(), goods.getReceiverProvince());
+			DistrictCenter districtCenter = districtCenterService.getDistrictCenter(goods.getReceiverDistrict());
 			goods.setDistrictCenterByReceiveDistrictCenter(districtCenter);
 			goodsService.save(goods);
 			goods = goodsService.getGoodsBygoodsId(goods.getGoodsId());

@@ -61,6 +61,7 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
                     json.put("login", 0);
                 } else {
                     json.put("login", 1);
+                    json.put("center", districtCenter.getDistrict());
                 }
                 json.output();
                 return;

@@ -20,6 +20,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.log4j.Logger;
 import service.IConditionsService;
+import service.IDistrictCenterService;
 import service.IGoodsService;
 import service.IGoodsStatusService;
 import service.IProvinceCenterService;
@@ -34,6 +35,7 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 	private IGoodsStatusService goodsStatusService;
 	private IConditionsService conditionsService;
 	private IProvinceCenterService provinceCenterService;
+	private IDistrictCenterService districtCenterService;
 	private String currentGoods;
 	private String searchGoodsId; // 输入的要查询单号
 	private String goodsId;
@@ -49,6 +51,7 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 	private String receiverAddress;
 	private String senderDistrict;
 	private String receiverDistrict;
+	private String currentDistrict;
 	private HttpServletResponse response = ServletActionContext.getResponse();
 	private JsonHelper json = new JsonHelper(this.response);
 
@@ -111,24 +114,25 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 
 	public void viewGoods() throws Exception {
 		Goods goodsInfo = goodsService.getGoodsBygoodsId(currentGoods);
-		json.put(goodsId, goodsInfo.getGoodsId());
-		json.put(senderName, goodsInfo.getSenderName());
-		json.put(senderPhone, goodsInfo.getSenderPhone());
-		json.put(senderProvince, goodsInfo.getSenderProvince());
-		json.put(senderCity, goodsInfo.getSenderCity());
-		json.put(senderDistrict, goodsInfo.getSenderDistrict());
-		
-		json.put(senderAddress, goodsInfo.getSenderAddress());
-		json.put(receiverName, goodsInfo.getReceiverName());
-		json.put(receiverPhone, goodsInfo.getReceiverPhone());
-		json.put(receiverProvince, goodsInfo.getReceiverProvince());
-		json.put(receiverCity, goodsInfo.getReceiverCity());
-		json.put(receiverDistrict, goodsInfo.getReceiverDistrict());
+		System.out.print(goodsInfo.getGoodsId());
+		json.put("goodsId", goodsInfo.getGoodsId());
+		json.put("senderName", goodsInfo.getSenderName());
+		json.put("senderPhone", goodsInfo.getSenderPhone());
+		json.put("senderProvince", goodsInfo.getSenderProvince());
+		json.put("senderCity", goodsInfo.getSenderCity());
+		json.put("senderDistrict", goodsInfo.getSenderDistrict());
+		json.put("senderAddress", goodsInfo.getSenderAddress());
+		json.put("receiverName", goodsInfo.getReceiverName());
+		json.put("receiverPhone", goodsInfo.getReceiverPhone());
+		json.put("receiverProvince", goodsInfo.getReceiverProvince());
+		json.put("receiverCity", goodsInfo.getReceiverCity());
+		json.put("receiverDistrict", goodsInfo.getReceiverDistrict());
+		json.put("receiverAddress", goodsInfo.getReceiverAddress());
 		json.output();
-	    return;
+		return;
 	}
 
-	public String modifyGoodsinfo() throws Exception { // 单号查询显示后，进行修改
+	public void modifyGoodsinfo() throws Exception { // 单号查询显示后，进行修改
 		Goods goods = new Goods();
 		goods.setGoodsId(goodsId);
 		goods.setSenderName(senderName);
@@ -146,16 +150,20 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		// goods.setDistrictCenterBySendDestrictCenter(districtCenterBySendDestrictCenter);
 		goodsService.save(goods);
 		if (goods != null) {
-			return "modifyGoodsinfoSuccess";
-		} else
-			return "modifyGoodsinfoFalse";
+			json.put("success", 1);
+			json.output();
+		} else {
+			json.put("success", 0);
+		}
+		json.output();
 	}
 
 	@SuppressWarnings({ "null", "unused" })
-	public String getGoodsByDistrict() throws Exception {// 获取当前区县营业点未发送到省的的所有快递单
+	public void getGoodsByDistrict() throws Exception {// 获取当前区县营业点未发送到省的的所有快递单
+
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();
-		DistrictCenter district = (DistrictCenter) context.getSession().get("login");
+		DistrictCenter district = districtCenterService.getDistrictCenter(currentDistrict);
 		list = goodsService.getGoodsByDistrict(district.getDistrict(), district.getCity(), district.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -167,14 +175,18 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 			}
 		}
 		if (list2 != null) {
-			context.getSession().put("DistrictList", list2);
-			return "getGoodsByDistrictSuccess";
-		} else {
-			return "getGoodsByDistrictFalse";
+			String result = "";
+			for (Goods i : list2) {
+				result += "单号a" + i.getGoodsId() + "b寄送省份a" + i.getSenderProvince() + "b发往省份a" + i.getReceiverProvince()
+						+ "b";
+			}
+			json.put("result", result);
+			json.output();
+			return;
 		}
 	}
 
-	public String addStatus() throws Exception {// 保存状态信息，并将区县营业点加入goods表中
+	public void addStatus() throws Exception {// 保存状态信息，并将区县营业点加入goods表中
 		Goods goods = new Goods();
 		goods = goodsService.getGoodsBygoodsId(goodsId);
 		GoodsStatusId goodsStatusId = new GoodsStatusId();
@@ -182,9 +194,7 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		goodsStatusId.setConditionId("2");
 		GoodsStatus goodsStatus = new GoodsStatus();
 		goodsStatus.setId(goodsStatusId);
-		DistrictCenter district = (DistrictCenter) context.getSession().get("login");
-		System.out.println(goods);
-		System.out.println(goodsId);
+		DistrictCenter district = (DistrictCenter) goods.getDistrictCenterBySendDestrictCenter();
 		goods.setDistrictCenterBySendDestrictCenter(district);
 		goodsService.save(goods);
 		goods = goodsService.getGoodsBygoodsId(goodsId);
@@ -192,17 +202,20 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		goodsStatus.setConditions(conditionsService.getConditionsByConditonsId("2"));
 		goodsStatusService.save(goodsStatus);
 		if (goodsStatus != null) {
-			return "saveStatusSuccess";
-		} else
-			return "saveStatusFalse";
+			json.put("success", 1);
+		} else {
+			json.put("success", 0);
+		}
+		json.output();
+
 	}
 
 	@SuppressWarnings("null")
-	public String adddistrictListStatus() throws Exception {// 发往本省时，将商品链表都加上状态信息
+	public void adddistrictListStatus() throws Exception {// 发往本省时，将商品链表都加上状态信息
 		int j = 0;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();
-		DistrictCenter district = (DistrictCenter) context.getSession().get("login");
+		DistrictCenter district = (DistrictCenter) districtCenterService.getDistrictCenter(currentDistrict);
 		list = goodsService.getGoodsByDistrict(district.getDistrict(), district.getCity(), district.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -230,9 +243,11 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 			goodsStatusService.save(goodsStatus);
 		}
 		if (j == list2.size()) {
-			return "savedistrictListStatusSuccess";
-		} else
-			return "savedistrictListStatusFalse";
+			json.put("success", 1);
+		} else {
+			json.put("success", 0);
+		}
+		json.output();
 	}
 
 	@SuppressWarnings({ "null", "unused" })
@@ -641,4 +656,21 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 	public void setCurrentGoods(String currentGoods) {
 		this.currentGoods = currentGoods;
 	}
+
+	public IDistrictCenterService getDistrictCenterService() {
+		return districtCenterService;
+	}
+
+	public void setDistrictCenterService(IDistrictCenterService districtCenterService) {
+		this.districtCenterService = districtCenterService;
+	}
+
+	public String getCurrentDistrict() {
+		return currentDistrict;
+	}
+
+	public void setCurrentDistrict(String currentDistrict) {
+		this.currentDistrict = currentDistrict;
+	}
+
 }
