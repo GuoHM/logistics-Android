@@ -53,3 +53,8 @@
 <td>Add some functions</td>
 <td>Yang Hanxiao</td>
 </tr>
+<tr>
+<td>2017.10.20</td>
+<td>Finish print and modify function,sort function</td>
+<td>Guo Haoming</td>
+</tr>
