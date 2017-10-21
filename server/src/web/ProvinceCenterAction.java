@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import bean.DistrictCenter;
@@ -24,6 +27,7 @@ import service.IDistrictCenterService;
 import service.IGoodsService;
 import service.IGoodsStatusService;
 import service.IProvinceCenterService;
+import util.JsonHelper;
 
 public class ProvinceCenterAction extends ActionSupport implements ServletRequestAware {
 	private static final long serialVersionUID = 1405926533311347411L;
@@ -40,15 +44,16 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 	private String amount;
 	private String[] box;
 	private String centerName;
+	private String currentProvince;
+	private HttpServletResponse response = ServletActionContext.getResponse();
+	private JsonHelper json = new JsonHelper(this.response);
 
 	@SuppressWarnings({ "null", "unused" })
-	public String getGoodsByProvince() throws Exception {// 获取当前省未发往其他省的快递
+	public void getGoodsByProvince() throws Exception {// 获取当前省未发往其他省的快递
 		int sum = 1;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();// list2存放本省的未发过去的订单
-		List<Transportation> list3 = new ArrayList<Transportation>();
-		ProvinceCenter province = (ProvinceCenter) context.getSession().get("login");
-		System.out.println((ProvinceCenter) context.getSession().get("login"));
+		ProvinceCenter province = provinceCenterService.getProvinceCenterByProvinceName(currentProvince);
 		list = goodsService.getGoodsByProvince(province.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -59,38 +64,34 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 				}
 			}
 		}
-		String a[][] = new String[list2.size()][2];
-		for (int i = 0; i < list2.size(); i++) {
-			String provinceName = list2.get(i).getReceiverProvince();
-			for (int j = i + 1; j < list2.size(); j++) {
-				if (list2.get(j).getReceiverProvince().equals(list2.get(i).getReceiverProvince())) {
-					list2.remove(j);
-					--j;
-					++sum;
-				}
+
+		// String a[][] = new String[list2.size()][2];
+		// for (int i = 0; i < list2.size(); i++) {
+		// String provinceName = list2.get(i).getReceiverProvince();
+		// for (int j = i + 1; j < list2.size(); j++) {
+		// if
+		// (list2.get(j).getReceiverProvince().equals(list2.get(i).getReceiverProvince()))
+		// {
+		// list2.remove(j);
+		// --j;
+		// ++sum;
+		// }
+		// }
+		//
+		// a[i][0] = provinceName;
+		// a[i][1] = sum + "";
+		// }
+		if (list2 != null) {
+			String result = "";
+			for (Goods i : list2) {
+				result += "单号a" + i.getGoodsId() + "发往省份a" + i.getReceiverProvince() + "b";
 			}
-
-			a[i][0] = provinceName;
-			a[i][1] = sum + "";
-
-			// list3=provinceCenterService.getTransportationlistByDD(province.getProvince(),
-			// provinceName);
-		}
-		if (a != null && list3 != null) {
-			context.getSession().put("senderProvincearray", a);
-			context.getSession().put("transportationList", list3);
-			return "getGoodsBysenderProvinceSuccess";
+			json.put("result", result);
+			json.output();
+			return;
 		} else {
-			return "getGoodsBysenderProvinceFalse";
+			return;
 		}
-	}
-
-	public String viewTransportation() throws Exception {
-		List<Transportation> list = provinceCenterService.getTransportationlistByDD(depature, destination);
-		context.getSession().put("transporationlist", list);
-		context.getSession().put("show", "show");
-		context.getSession().put("amount", amount);
-		return SUCCESS;
 	}
 
 	public String selectedTransportation() throws Exception {// 获取已选择车辆
@@ -116,11 +117,11 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 	}
 
 	@SuppressWarnings({ "null", "unused" })
-	public String getByreceiverProvince() throws Exception { // 获取本省快递链表
+	public void getByreceiverProvince() throws Exception { // 获取本省快递链表
 		int sum = 1;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();// list2存放本省的未发过去的订单
-		ProvinceCenter province = (ProvinceCenter) context.getSession().get("login");
+		ProvinceCenter province = provinceCenterService.getProvinceCenterByProvinceName(currentProvince);
 		list = goodsService.getGoodsByreceiverProvince(province.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -131,34 +132,27 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 				}
 			}
 		}
-		String a[][] = new String[list2.size()][2];
-		for (int i = 0; i < list2.size(); i++) {
-			String districtName = list2.get(i).getReceiverDistrict();
-			for (int j = i + 1; j < list2.size(); j++) {
-				if (list2.get(j).getReceiverDistrict().equals(list2.get(i).getReceiverDistrict())) {
-					list2.remove(j);
-					--j;
-					++sum;
-				}
-			}
 
-			a[i][0] = districtName;
-			a[i][1] = sum + "";
-		}
-		if (a != null) {
-			context.getSession().put("senderDistrictarray", a);
-			return "getByreceiverProvinceSuccess";
+		if (list2 != null) {
+			String result = "";
+			for (Goods i : list2) {
+				result += "单号a" + i.getGoodsId() + "b发往区县营业点a" + i.getReceiverDistrict() + "b";
+			}
+		
+			json.put("result", result);
+			json.output();
+			return;
 		} else {
-			return "getByreceiverProvinceFalse";
+			return;
 		}
 	}
 
 	@SuppressWarnings("null")
-	public String addsenderProvinceListStatus() throws Exception {// 发往相应省份时，将这些商品链表都加上状态信息
+	public void addsenderProvinceListStatus() throws Exception {// 发往相应省份时，将这些商品链表都加上状态信息
 		int j = 0;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();
-		ProvinceCenter province = (ProvinceCenter) context.getSession().get("login");
+		ProvinceCenter province = provinceCenterService.getProvinceCenterByProvinceName(currentProvince);
 		list = goodsService.getGoodsByProvince(province.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -186,17 +180,18 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 			goodsStatusService.save(goodsStatus);
 		}
 		if (j == list2.size()) {
-			return "saveprovinceListStatusSuccess";
+			json.put("success", 1);
+			json.output();
 		} else
-			return "saveprovinceListStatusFalse";
+			return;
 	}
 
 	@SuppressWarnings("null")
-	public String addsenderDistrictListStatus() throws Exception {// 发往相应区县营业点，将这些商品链表都加上状态信息
+	public void addsenderDistrictListStatus() throws Exception {// 发往相应区县营业点，将这些商品链表都加上状态信息
 		int j = 0;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();// list2存放本省的未发过去的订单
-		ProvinceCenter province = (ProvinceCenter) context.getSession().get("login");
+		ProvinceCenter province = provinceCenterService.getProvinceCenterByProvinceName(currentProvince);
 		list = goodsService.getGoodsByreceiverProvince(province.getProvince());
 		if (list != null) {
 			for (int i = 0; i < list.size(); i++) {
@@ -225,9 +220,9 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 			goodsStatusService.save(goodsStatus);
 		}
 		if (j == list2.size()) {
-			return "addsenderDistrictListStatusSuccess";
-		} else
-			return "addsenderDistrictListStatusFalse";
+			json.put("success", 1);
+			json.output();
+		}
 	}
 
 	@Override
@@ -428,6 +423,14 @@ public class ProvinceCenterAction extends ActionSupport implements ServletReques
 	 */
 	public void setDistrictCenterService(IDistrictCenterService districtCenterService) {
 		this.districtCenterService = districtCenterService;
+	}
+
+	public String getCurrentProvince() {
+		return currentProvince;
+	}
+
+	public void setCurrentProvince(String currentProvince) {
+		this.currentProvince = currentProvince;
 	}
 
 }

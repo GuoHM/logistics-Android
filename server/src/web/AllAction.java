@@ -75,6 +75,7 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
                     json.put("login", 0);
                 } else {
                     json.put("login", 2);
+                    json.put("admin", admin.getAdminId());
                 }
                 json.output();
                 return;
@@ -88,6 +89,7 @@ public class AllAction extends ActionSupport implements ServletRequestAware {
                     json.put("login", 0);
                 } else {
                     json.put("login", 3);
+                    json.put("province", provinceCenter.getProvince());
                 }
                 json.output();
                 return;

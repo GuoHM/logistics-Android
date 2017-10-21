@@ -251,10 +251,10 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 	}
 
 	@SuppressWarnings({ "null", "unused" })
-	public String getGoodsByreceiverDistrict() throws Exception {// 获取当前区县营业点未配送的的所有快递单
+	public void getGoodsByreceiverDistrict() throws Exception {// 获取当前区县营业点未配送的的所有快递单
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();
-		DistrictCenter district = (DistrictCenter) context.getSession().get("login");
+		DistrictCenter district = districtCenterService.getDistrictCenter(currentDistrict);
 		list = goodsService.getGoodsByreceiverDistrict(district.getDistrict(), district.getCity(),
 				district.getProvince());
 		if (list != null) {
@@ -267,19 +267,22 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 			}
 		}
 		if (list2 != null) {
-			context.getSession().put("receiverDistrictList", list2);
-			return "getGoodsByreceiverDistrictSuccess";
-		} else {
-			return "getGoodsByreceiverDistrictFalse";
+			String result = "";
+			for (Goods i : list2) {
+				result += "单号a" + i.getGoodsId() + "b发往地址a" + i.getReceiverAddress() + "b";
+			}
+			json.put("result", result);
+			json.output();
+			return;
 		}
 	}
 
 	@SuppressWarnings("null")
-	public String addreceiverDistrictListStatus() throws Exception {// 配送时，将商品链表都加上状态信息
+	public void addreceiverDistrictListStatus() throws Exception {// 配送时，将商品链表都加上状态信息
 		int j = 0;
 		List<Goods> list = null;
 		List<Goods> list2 = new ArrayList<Goods>();
-		DistrictCenter district = (DistrictCenter) context.getSession().get("login");
+		DistrictCenter district = districtCenterService.getDistrictCenter(currentDistrict);
 		list = goodsService.getGoodsByreceiverDistrict(district.getDistrict(), district.getCity(),
 				district.getProvince());
 		if (list != null) {
@@ -302,10 +305,11 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 			goodsStatus.setConditions(conditionsService.getConditionsByConditonsId("6"));
 			goodsStatusService.save(goodsStatus);
 		}
-		if (j == list2.size()) {
-			return "savereceiverDistrictListStatusSuccess";
-		} else
-			return "savereceiverDistrictListStatusFalse";
+		if (list2 != null) {
+			json.put("success", 1);
+			json.output();
+			return;
+		}
 	}
 
 	// public String printGoodsinfo() throws Exception { //打印快递单信息
