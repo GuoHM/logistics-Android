@@ -84,6 +84,18 @@
             android:name=".DistrictSortActivity"
             android:label="@string/title_activity_district_sort" >
         </activity>
+        <activity
+            android:name=".ProvinceSortActivity"
+            android:label="@string/title_activity_province_sort" >
+        </activity>
+        <activity
+            android:name=".ProvinceSendActivity"
+            android:label="@string/title_activity_province_send" >
+        </activity>
+        <activity
+            android:name=".DistrictSendActivity"
+            android:label="@string/title_activity_district_send" >
+        </activity>
     </application>
 
 </manifest>

@@ -47,18 +47,9 @@ public class DistrictMainActivity extends Activity {
 		});
 		btn3.setOnClickListener(new OnClickListener() {// 添加状态信息，表示派送成功
 			public void onClick(View view) {
-				try {
-					json.processURL("addreceiverDistrictListStatus");
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				intent.setClass(DistrictMainActivity.this, DistrictSendActivity.class);
+				intent.putExtra("center", center);
+				startActivity(intent);
 			}
 		});
 		btn4.setOnClickListener(new OnClickListener() {

@@ -32,4 +32,13 @@
         android:layout_y="334dp"
         android:text="退出登录" />
 
+    <TextView
+        android:id="@+id/province_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="22dp"
+        android:layout_y="24dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </AbsoluteLayout>

@@ -20,7 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class DistrictSortActivity extends Activity {
+public class DistrictSendActivity extends Activity {
 	private JsonHelper json;
 	private TextView display;
 	private Button sort;
@@ -30,20 +30,20 @@ public class DistrictSortActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		json = new JsonHelper();
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_district_sort);
+		setContentView(R.layout.activity_district_send);
 		initView();
 		setListener();
 	}
 
 	private void initView() {
-		display = (TextView) findViewById(R.id.sort_display);
-		sort = (Button) findViewById(R.id.sort_sort);
-		exit = (Button) findViewById(R.id.sort_exit);
+		display = (TextView) findViewById(R.id.districtsend_display);
+		sort = (Button) findViewById(R.id.districtsend_sort);
+		exit = (Button) findViewById(R.id.districtsend_exit);
 		Intent intent = getIntent();
 		String center = intent.getStringExtra("center");
 		json.setParameter("currentDistrict", center);
 		try {
-			json.processURL("getGoodsByDistrict");
+			json.processURL("getGoodsByreceiverDistrict");
 			display.setText(json.getJsonData("result").toString().replaceAll("a", ":").replaceAll("b", "\n"));
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -68,10 +68,10 @@ public class DistrictSortActivity extends Activity {
 				String center = intent.getStringExtra("center");
 				json.setParameter("currentDistrict", center);
 				try {
-					json.processURL("senditsDistrict");
+					json.processURL("addreceiverDistrictListStatus");
 					if((Integer)json.getJsonData("success")==1) {
-						AlertDialog.Builder builder = new Builder(DistrictSortActivity.this);
-						builder.setTitle("成功").setMessage("已发往省营业点").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+						AlertDialog.Builder builder = new Builder(DistrictSendActivity.this);
+						builder.setTitle("成功").setMessage("已完成派送").setPositiveButton("确定", new DialogInterface.OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
@@ -98,10 +98,12 @@ public class DistrictSortActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(DistrictSortActivity.this,DistrictMainActivity.class);
+				Intent intent = new Intent(DistrictSendActivity.this,DistrictMainActivity.class);
 				startActivity(intent);
 			}
 
 		});
 	}
 }
+
+

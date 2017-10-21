@@ -19,5 +19,8 @@
     <string name="title_activity_province_manage">ProvinceManageActivity</string>
     <string name="title_activity_district_manage">DistrictManageActivity</string>
     <string name="title_activity_district_sort">DistrictSortActivity</string>
+    <string name="title_activity_province_sort">ProvinceSortActivity</string>
+    <string name="title_activity_province_send">ProvinceSendActivity</string>
+    <string name="title_activity_district_send">DistrictSendActivity</string>
 
 </resources>
