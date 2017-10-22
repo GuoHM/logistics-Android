@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="69dp"
-        android:text="省分拣中心管理" />
+        android:text="新增省分拣中心" />
 
     <Button
         android:id="@+id/districtManage"
@@ -24,6 +24,6 @@
         android:layout_alignLeft="@+id/provinceManage"
         android:layout_below="@+id/provinceManage"
         android:layout_marginTop="42dp"
-        android:text="区县营业点管理" />
+        android:text="新增区县营业点" />
 
 </RelativeLayout>

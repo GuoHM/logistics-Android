@@ -108,8 +108,7 @@ public class LoginActivity extends Activity {
 			startActivity(intent);
 			break;
 		case 2:
-			intent = new Intent(LoginActivity.this, ProvinceMainActivity.class);
-			intent.putExtra("admin", json.getJsonData("admin").toString());
+			intent = new Intent(LoginActivity.this, AdminMainActivity.class);
 			startActivity(intent);
 			break;
 		case 3:

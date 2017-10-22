@@ -15,7 +15,7 @@
      android:text="省份：" />
 
  <EditText
-     android:id="@+id/provincename"
+     android:id="@+id/districtmanage_provincename"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:ems="10"
@@ -28,7 +28,7 @@
      android:text="城市：" />
 
  <EditText
-     android:id="@+id/cityname"
+     android:id="@+id/districtmanage_cityname"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:ems="10"
@@ -41,7 +41,7 @@
      android:text="区县：" />
 
  <EditText
-     android:id="@+id/districtname"
+     android:id="@+id/districtmanage_districtname"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:ems="10"
@@ -57,89 +57,46 @@
      android:text="密码：" />
 
  <EditText
-     android:id="@+id/districtpw"
+     android:id="@+id/districtmanage_password"
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
      android:ems="10"
-     android:inputType="phone" />
+     android:inputType="textPassword" />
 	
 	<LinearLayout android:id="@+id/LinearLayout01" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content">
-		<Button android:id="@+id/adddistrict" 
-			android:text="新增区县" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:padding = "5dip"
-			android:layout_weight="1">
-		</Button>
-		<Button android:id="@+id/showall" 
-			android:text="根据省市显示区县" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:padding = "5dip"
-			android:layout_weight="1">
-		</Button>
-		<Button android:id="@+id/clear" 
-			android:text="清除显示" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:padding = "5dip"
-			android:layout_weight="1">
-		</Button>
+
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="重复密码"
+		    android:textAppearance="?android:attr/textAppearanceSmall" />
 		
 	</LinearLayout>
 	
 	<LinearLayout android:id="@+id/LinearLayout03" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content">
-		<TextView android:text="ID："
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:padding = "3dip">
-		</TextView>
-		<EditText android:id="@+id/districtid"
-			android:layout_width="50dip" 
-			android:layout_height="wrap_content"
-			android:padding = "3dip"
-			android:layout_weight="1">
-		</EditText>
 
-		<Button
-		    android:id="@+id/query"
-		    android:layout_width="50dip"
+		<EditText
+		    android:id="@+id/districtmanage_repeatpassword"
+		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
-		    android:padding="3dip"
-		    android:text="ID查询" />
-
-		<Button android:id="@+id/delete" 
-			android:text="ID删除" 
-			android:layout_width="50dip"
-			android:layout_height="wrap_content"
-			android:padding = "3dip"
-			android:layout_weight="1">
-		</Button>	
+		    android:ems="10"
+		    android:inputType="textPassword" />
 			
 </LinearLayout>
-	
-	<TextView android:id="@+id/label"
-		android:text="查询结果："
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content">
-	</TextView>
-	<ScrollView  android:layout_width="fill_parent"
-    	android:layout_height="fill_parent">
-    	<LinearLayout android:layout_width="fill_parent" 
-			android:layout_height="wrap_content" 
-			android:orientation="vertical">
-			<TextView android:id="@+id/display"
-				android:text=""
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content">
-			</TextView>
-		</LinearLayout>
-	</ScrollView>
+
+	<Button
+	    android:id="@+id/adddistrict"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="5dip"
+	    android:text="新增区县" />
 
 </LinearLayout>
 

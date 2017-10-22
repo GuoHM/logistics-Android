@@ -5,122 +5,70 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <RelativeLayout android:id="@+id/RelativeLayout01" 
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content" >
-		
-		<EditText android:id="@+id/provincename"
-			android:text=""  
-			android:layout_width="280dip" 
-			android:layout_height="wrap_content"
-			android:layout_alignParentRight="true" 
-			android:layout_marginLeft="10dip" >
-		</EditText>
-		<TextView android:id="@+id/name_label"
-			android:text="省份："  
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true" 
-			android:layout_toRightOf="@id/provincename" 
-			android:layout_alignBaseline="@+id/provincename">
-		</TextView>
-		
-		<EditText android:id="@+id/provincepassword"
-			android:text=""  
-			android:layout_width="280dip" 
-			android:layout_height="wrap_content"
-			android:layout_alignParentRight="true" 
-			android:layout_marginLeft="10dip" 
-			android:layout_below="@id/provincename" 
-			android:numeric="integer">
-		</EditText>
-		<TextView android:id="@+id/age_label"
-			android:text="密码："  
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true" 
-			android:layout_toRightOf="@id/provincepassword" 
-			android:layout_alignBaseline="@+id/provincepassword" >
-		</TextView>
-		
-	</RelativeLayout>
+   
+
+
+ <TextView
+     android:id="@+id/TextView03"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="省份：" />
+
+ <EditText
+     android:id="@+id/provincemanage_provincename"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="textPostalAddress" />
+
+ <TextView
+     android:id="@+id/TextView02"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="密码：" />
+
+ <EditText
+     android:id="@+id/provincemanage_password"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:ems="10"
+     android:inputType="textPassword" />
 	
 	<LinearLayout android:id="@+id/LinearLayout01" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content">
-		<Button android:id="@+id/addprovince" 
-			android:text="新增省" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:padding = "5dip"
-			android:layout_weight="1">
-		</Button>
 
-		<Button android:id="@+id/query_all" 
-			android:text="显示全部" 
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:padding = "5dip"
-			android:layout_weight="1">
-		</Button>
-
-		<Button
-		    android:id="@+id/clear"
+		<TextView
+		    android:id="@+id/textView1"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
-		    android:padding="5dip"
-		    android:text="清除显示" />
-
+		    android:text="重复密码"
+		    android:textAppearance="?android:attr/textAppearanceSmall" />
+		
 	</LinearLayout>
 	
 	<LinearLayout android:id="@+id/LinearLayout03" 
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content">
-		<TextView android:text="ID："
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:padding = "3dip">
-		</TextView>
-		<EditText android:id="@+id/provinceid"
-			android:layout_width="50dip" 
-			android:layout_height="wrap_content"
-			android:padding = "3dip"
-			android:layout_weight="1">
-		</EditText>
-		<Button android:id="@+id/delete" 
-			android:text="ID删除" 
-			android:layout_width="50dip"
-			android:layout_height="wrap_content"
-			android:padding = "3dip"
-			android:layout_weight="1">
-		</Button>
-		<Button android:id="@+id/query" 
-			android:text="ID查询" 
-			android:layout_width="50dip"
-			android:layout_height="wrap_content"
-			android:padding = "3dip"
-			android:layout_weight="1">
-		</Button>	
+
+		<EditText
+		    android:id="@+id/provincemanage_repeatpassword"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:ems="10"
+		    android:inputType="textPassword" />
 			
 </LinearLayout>
-	
-	<TextView android:id="@+id/label"
-		android:text="查询结果："
-		android:layout_width="wrap_content" 
-		android:layout_height="wrap_content">
-	</TextView>
-	<ScrollView  android:layout_width="fill_parent"
-    	android:layout_height="fill_parent">
-    	<LinearLayout android:layout_width="fill_parent" 
-			android:layout_height="wrap_content" 
-			android:orientation="vertical">
-			<TextView android:id="@+id/display"
-				android:text=""
-				android:layout_width="wrap_content" 
-				android:layout_height="wrap_content">
-			</TextView>
-		</LinearLayout>
-	</ScrollView>
+
+	<Button
+	    android:id="@+id/addprovince"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:padding="5dip"
+	    android:text="新增区县" />
 
 </LinearLayout>
+
+

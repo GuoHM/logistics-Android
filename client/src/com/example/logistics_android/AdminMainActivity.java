@@ -20,16 +20,18 @@ public class AdminMainActivity extends Activity {
 		setContentView(R.layout.activity_admin_main);
 		final Button btn1=(Button)findViewById(R.id.provinceManage);
 		final Button btn2=(Button)findViewById(R.id.districtManage);
-     	btn1.setOnClickListener(new OnClickListener(){//点击修改打印进行跳转
+		btn1.setOnClickListener(new OnClickListener(){//点击修改打印进行跳转
 			public void onClick(View view){
 				Intent intent=new Intent(AdminMainActivity.this, ProvinceManageActivity.class);
-		}
-	});
-     	
-     	btn2.setOnClickListener(new OnClickListener(){//点击修改打印进行跳转
+				startActivity(intent);
+			}
+		});
+
+		btn2.setOnClickListener(new OnClickListener(){//点击修改打印进行跳转
 			public void onClick(View view){
 				Intent intent=new Intent(AdminMainActivity.this,DistrictManageActivity.class);
-		}
-	});
+				startActivity(intent);
+			}
+		});
 	}
 }

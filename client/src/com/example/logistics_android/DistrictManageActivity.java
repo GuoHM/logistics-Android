@@ -9,6 +9,9 @@ import com.example.util.JsonHelper;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -25,124 +28,90 @@ public class DistrictManageActivity extends Activity {
 	private EditText provincename;
 	private EditText cityname;
 	private EditText districtname;
-	private EditText districtpw;
-	private EditText districtid;
+	private EditText password;
+	private EditText passwordrepeat;
 
-	private TextView displayView;
+	private Button adddistrict;
 	private JsonHelper json;
-	
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    	this.json = new JsonHelper();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_district_manage);
-        
-        provincename = (EditText)findViewById(R.id.provincename);
-        cityname = (EditText)findViewById(R.id.cityname);
-        districtname = (EditText)findViewById(R.id.districtname);
-        districtpw = (EditText)findViewById(R.id.districtpw);
-        provincename = (EditText)findViewById(R.id.provincename);
-        districtid = (EditText)findViewById(R.id.districtid);      
-        
-        
-        Button addprovince = (Button)findViewById(R.id.addprovince);
-        Button queryAllButton = (Button)findViewById(R.id.query_all);      
-        Button clearButton = (Button)findViewById(R.id.clear);
-        
-        Button queryButton = (Button)findViewById(R.id.query);
-        Button deleteButton = (Button)findViewById(R.id.delete);
-        
-        
-        addprovince.setOnClickListener(addButtonListener); 
-        queryAllButton.setOnClickListener(queryAllButtonListener);     
-        clearButton.setOnClickListener(clearButtonListener);   
-        
-        queryButton.setOnClickListener(queryButtonListener);
-        deleteButton.setOnClickListener(deleteButtonListener);
-        
-    }
-    
-    OnClickListener addButtonListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			 String province=provincename.getText().toString();
-			 String city=cityname.getText().toString();
-			 String district=districtname.getText().toString();
-			 String newpassword=districtpw.getText().toString();
-			
-			    json.setParameter("province", province);
-				json.setParameter("newpassword", newpassword);
-				json.setParameter("city", city);
-				json.setParameter("district", district);
-				try {
-					json.processURL("addDistrict");
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		this.json = new JsonHelper();
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_district_manage);
+		initView();
+		setListener();
 	}
-    };
 
-    
-    OnClickListener queryAllButtonListener = new OnClickListener() {
-		@Override
-		public void onClick(View v) {
-		try {
-			json.processURL("getProvinceList");
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-    };
-    
-    OnClickListener clearButtonListener = new OnClickListener() {
+	private void initView(){
+		provincename = (EditText) findViewById(R.id.districtmanage_provincename);
+		cityname = (EditText) findViewById(R.id.districtmanage_cityname);
+		districtname = (EditText) findViewById(R.id.districtmanage_districtname);
+		password = (EditText) findViewById(R.id.districtmanage_password);
+		passwordrepeat = (EditText) findViewById(R.id.districtmanage_repeatpassword);
+		adddistrict = (Button) findViewById(R.id.adddistrict);
+	}
 
-		@Override
-		public void onClick(View v) {
-			displayView.setText("");
-		}	
-    };
-    
+	private void setListener(){
+		adddistrict.setOnClickListener(new OnClickListener(){
 
-    OnClickListener queryButtonListener = new OnClickListener() {//显示全部省分拣中心信息
-		@Override
-		public void onClick(View v) {
-			try {
-				json.processURL("getProvinceList");
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				String password1 = password.getText().toString();
+				String password2 = passwordrepeat.getText().toString();
+				if(password1.equals(password2)){
+					String province = provincename.getText().toString();
+					String city = cityname.getText().toString();
+					String district = districtname.getText().toString();
+					try {
+						addDistrict(province,city,district,password1);
+					} catch (ClientProtocolException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else {
+					AlertDialog.Builder builder = new Builder(DistrictManageActivity.this);
+					builder.setTitle("错误").setMessage("两次输入密码不一致").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.dismiss();
+						}
+					}).create().show();
+				}
 			}
-		
+			
+		});
+	}
+	
+	private void addDistrict(String province,String city,String district,String password) throws ClientProtocolException, IOException, JSONException{
+		json.setParameter("district", district);
+		json.setParameter("province", province);
+		json.setParameter("city", city);
+		json.setParameter("password", password);
+		json.processURL("addDistrict");
+		if((Integer)json.getJsonData("success")==1){
+			AlertDialog.Builder builder = new Builder(DistrictManageActivity.this);
+			builder.setTitle("错误").setMessage("新增成功").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			}).create().show();
 		}
-    };
-    
-    OnClickListener deleteButtonListener = new OnClickListener() {//根基id删除省分拣中心
-		@Override
-		public void onClick(View v) {
-			int centerId = Integer.parseInt(districtid.getText().toString());
-			json.setParameter("centerId", centerId);
-			try {
-				json.processURL("deleteProvince");
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}	
-    };
+	}
+
+
+
+	
 
 }
