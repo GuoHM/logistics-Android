@@ -194,7 +194,7 @@ public class DistrictCenterAction extends ActionSupport implements ServletReques
 		goodsStatusId.setConditionId("2");
 		GoodsStatus goodsStatus = new GoodsStatus();
 		goodsStatus.setId(goodsStatusId);
-		DistrictCenter district = (DistrictCenter) goods.getDistrictCenterBySendDestrictCenter();
+		DistrictCenter district = districtCenterService.getDistrictCenter(currentDistrict);
 		goods.setDistrictCenterBySendDestrictCenter(district);
 		goodsService.save(goods);
 		goods = goodsService.getGoodsBygoodsId(goodsId);
