@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import bean.DistrictCenter;
@@ -17,6 +20,7 @@ import org.apache.log4j.Logger;
 import service.IAdminService;
 import service.IDistrictCenterService;
 import service.IProvinceCenterService;
+import util.JsonHelper;
 
 public  class AdminAction extends ActionSupport implements ServletRequestAware {
 	private static final long serialVersionUID = 1405926533311347411L;
@@ -33,8 +37,11 @@ public  class AdminAction extends ActionSupport implements ServletRequestAware {
 	private String provinceName;
 	private String cityName;
 	private int centerId;
+	private HttpServletResponse response = ServletActionContext.getResponse();
+	private JsonHelper json = new JsonHelper(this.response);
 
-	public String addDistrict() throws Exception {
+
+	public void addDistrict() throws Exception {
 		DistrictCenter user = new DistrictCenter();
 		user.setDistrict(district);
 		user.setCity(city);
@@ -42,9 +49,10 @@ public  class AdminAction extends ActionSupport implements ServletRequestAware {
 		user.setPwd(newpassword);
 		if (user != null) {
 			districtCenterService.save(user);
-			return "addDistrictSuccess";
+			json.put("success", 1);
+			json.output();
 		}
-		return "addDistrictFalse";
+		
 	}
 
 	public String addProvince() throws Exception {
