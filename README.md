@@ -58,3 +58,8 @@
 <td>Finish print and modify function,sort function</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.21</td>
+<td>Finish sort and send function</td>
+<td>Guo Haoming</td>
+</tr>
