@@ -63,3 +63,8 @@
 <td>Finish sort and send function</td>
 <td>Guo Haoming</td>
 </tr>
+<tr>
+<td>2017.10.22</td>
+<td>Finish add district and add province function</td>
+<td>Guo Haoming</td>
+</tr>
