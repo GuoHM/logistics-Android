@@ -9,6 +9,7 @@ import org.json.JSONException;
 import com.example.util.JsonHelper;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -39,6 +40,7 @@ public class ModifyPrintActivity extends Activity {
 	private Button save;
 	private Button print;
 	private JsonHelper json;
+	private String center;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,9 @@ public class ModifyPrintActivity extends Activity {
 		print = (Button) findViewById(R.id.print);
 		Intent intent = getIntent();
 		String goodsId = intent.getStringExtra("currentGoods");
+		center = intent.getStringExtra("center");
 		json.setParameter("currentGoods", goodsId);
+
 		json.processURL("viewGoods");
 		goodsIdField.setText(json.getJsonData("goodsId").toString());
 		senderNameField.setText(json.getJsonData("senderName").toString());
@@ -104,8 +108,11 @@ public class ModifyPrintActivity extends Activity {
 			public void onClick(View v) {
 
 				try {
+					json=new JsonHelper();
 					String goodsId = goodsIdField.getText().toString();
 					json.setParameter("goodsId", goodsId);
+					Log.d("12123123123123123213", center);
+					json.setParameter("currentDistrict", center);
 					json.processURL("printinfo");
 					if ((Integer) json.getJsonData("success") == 1) {
 						AlertDialog.Builder builder = new Builder(ModifyPrintActivity.this);

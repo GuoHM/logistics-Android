@@ -41,6 +41,7 @@ public class DistrictMainActivity extends Activity {
 		btn2.setOnClickListener(new OnClickListener() {// 添加状态信息，表示分拣成功
 			public void onClick(View view) {
 				intent.setClass(DistrictMainActivity.this, DistrictSortActivity.class);
+				intent.putExtra("center", center);
 				startActivity(intent);
 
 			}

@@ -8,6 +8,7 @@ import org.json.JSONException;
 import com.example.util.JsonHelper;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -73,8 +74,11 @@ public class SearchModifyPrintActivity extends Activity {
 	}
 
 	private void searchService(String goodsId) throws ClientProtocolException, IOException, JSONException {
-		Intent intent = new Intent();
+		Intent intent = getIntent();
+		String center=intent.getStringExtra("center");
+		Log.d("1123213131321111111111111111111111111111111111", center);
 		intent.putExtra("currentGoods", goodsId);
+		intent.putExtra("center", center);
 		intent.setClass(SearchModifyPrintActivity.this, ModifyPrintActivity.class);
 		startActivity(intent);
 	}
